@@ -1,5 +1,6 @@
 require "odi_content_models/version"
 require "mongoid"
+require "govuk_content_models"
 
 begin
   module OdiContentModels

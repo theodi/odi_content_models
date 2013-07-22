@@ -6,12 +6,16 @@ require "active_support/test_case"
 require "shoulda/context"
 require "minitest/autorun"
 require "mongoid"
+require "govuk_content_models/require_all"
 require "odi_content_models/require_all"
 require "database_cleaner"
 require "gds_api/test_helpers/panopticon"
 require "webmock/test_unit"
 require "odi_content_models/test_helpers/factories"
 require "timecop"
+
+# The models depend on a zone being set, so tests will fail if we don't
+Time.zone = "London"
 
 Mongoid.load! File.expand_path("../../config/mongoid.yml", __FILE__)
 WebMock.disable_net_connect!
