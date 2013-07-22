@@ -1,3 +1,18 @@
+GIT
+  remote: git://github.com/theodi/govuk_content_models.git
+  revision: 77bbd75991f54dc304c0bd289c271785fc586fd9
+  branch: feature-lambda-format-validator
+  specs:
+    govuk_content_models (5.10.0)
+      bson_ext
+      differ
+      gds-api-adapters
+      gds-sso (>= 3.0.0, < 4.0.0)
+      govspeak (>= 1.0.1, < 2.0.0)
+      mongoid (~> 2.4.10)
+      plek
+      state_machine
+
 PATH
   remote: .
   specs:
@@ -38,9 +53,9 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.5)
     arel (3.0.2)
-    bson (1.6.4)
-    bson_ext (1.6.4)
-      bson (~> 1.6.4)
+    bson (1.9.1)
+    bson_ext (1.9.1)
+      bson (~> 1.9.1)
     builder (3.0.4)
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
@@ -66,15 +81,6 @@ GEM
       htmlentities (~> 4)
       kramdown (~> 0.13.3)
       sanitize (= 2.0.3)
-    govuk_content_models (5.9.0)
-      bson_ext
-      differ
-      gds-api-adapters
-      gds-sso (>= 3.0.0, < 4.0.0)
-      govspeak (>= 1.0.1, < 2.0.0)
-      mongoid (~> 2.4.10)
-      plek
-      state_machine
     hashie (2.0.5)
     hike (1.2.3)
     htmlentities (4.3.1)
@@ -95,8 +101,8 @@ GEM
     mime-types (1.23)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
-    mongo (1.6.2)
-      bson (~> 1.6.2)
+    mongo (1.3.1)
+      bson (>= 1.3.1)
     mongoid (2.4.12)
       activemodel (~> 3.1)
       mongo (<= 1.6.2)
@@ -179,6 +185,7 @@ PLATFORMS
 DEPENDENCIES
   database_cleaner (= 0.7.2)
   factory_girl (= 3.3.0)
+  govuk_content_models!
   mocha (= 0.13.3)
   multi_json (= 1.3.7)
   odi_content_models!
