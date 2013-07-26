@@ -29,7 +29,7 @@ class CourseEdition < Edition
   end
   
   def rendering_app
-    "learning"
+    "courses"
   end
   
 end
