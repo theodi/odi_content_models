@@ -27,4 +27,9 @@ class CourseEdition < Edition
   def whole_body
     self.summary
   end
+  
+  def rendering_app
+    "courses"
+  end
+  
 end
