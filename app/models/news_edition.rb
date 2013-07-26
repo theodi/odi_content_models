@@ -15,4 +15,9 @@ class NewsEdition < Edition
   def whole_body
     body
   end
+
+  def rendering_app
+    "news"
+  end
+
 end

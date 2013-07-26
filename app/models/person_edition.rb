@@ -14,4 +14,10 @@ class PersonEdition < Edition
   def whole_body
     biography
   end
+
+  def rendering_app
+    "people"
+  end
+
+
 end
