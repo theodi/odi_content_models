@@ -9,7 +9,7 @@ class NewsEdition < Edition
   
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:body]
 
-  @fields_to_clone = [:subtitle, :body, :home_image, :main_image]
+  @fields_to_clone = [:subtitle, :body]
 
   attaches :image
 
