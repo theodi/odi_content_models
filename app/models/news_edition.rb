@@ -13,6 +13,8 @@ class NewsEdition < Edition
 
   attaches :image
 
+  attaches :video
+
   def whole_body
     body
   end
