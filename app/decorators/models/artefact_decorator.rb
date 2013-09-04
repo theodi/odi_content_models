@@ -10,3 +10,12 @@ Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
 }
 
 Artefact::FORMATS = Artefact::FORMATS_BY_DEFAULT_OWNING_APP.values.flatten + govuk_formats.values.flatten
+
+class Artefact
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  include Taggable
+  
+  field "author", type: String
+end
