@@ -1,9 +1,6 @@
 require "user"
 
 class User
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  
   field "profile", type: String  
   
   # If no profile is selected, create one
