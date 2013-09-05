@@ -1,8 +1,6 @@
 require "edition"
-require "attachable"
 
 class CourseEdition < Edition
-  include Attachable
 
   field :length,        type: String
   field :summary,       type: String
