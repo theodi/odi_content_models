@@ -48,6 +48,7 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
         :license     => nil,
         :spatial     => nil,
       })
+      MockAssetApi.any_instance.expects(:create_asset).never
       @edition.image_creator = "Bob Fish"
       @edition.save!
       # Now it's clean
@@ -58,6 +59,7 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
       file = File.open(File.expand_path("../../fixtures/uploads/image.jpg", __FILE__))
       response = OpenStruct.new(:id => 'http://asset-manager.example.com/assets/an_image_id')
       MockAssetApi.any_instance.expects(:create_asset).with({ :file => file }).returns(response)
+      MockAssetApi.any_instance.expects(:update_asset).never
       # Change image
       @edition.image = file
       @edition.save!
@@ -77,6 +79,7 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
         :license     => nil,
         :spatial     => nil,
       }).returns(response)
+      MockAssetApi.any_instance.expects(:update_asset).never
       # Change image and metadata
       @edition.image = file
       @edition.image_creator = "Bob Fish"
