@@ -1,4 +1,5 @@
 require "edition"
+require 'attachable_with_metadata'
 
 class NewsEdition < Edition
   include AttachableWithMetadata
