@@ -52,9 +52,18 @@ module AttachableWithMetadata
         end
         
         define_method("#{attachment_field}_metadata_hash") do
-          Hash[ATTACHMENT_METADATA_FIELDS.map do |metadata_field|
+          # Get all fields
+          data = Hash[ATTACHMENT_METADATA_FIELDS.map do |metadata_field|
             [metadata_field, instance_variable_get("@#{attachment_field}_#{metadata_field}")]
           end]
+          # Change non-string fields to their proper types
+          data[:subject] = data[:subject] ? data[:subject].split(',') : []
+          if data[:spatial]
+            spatial = ['lat', 'lng'].zip(data[:spatial].split(','))
+            data[:spatial] = Hash[spatial]
+          end
+          # Done
+          data
         end
 
         define_method("#{attachment_field}_metadata_has_changed?") do
@@ -70,7 +79,6 @@ module AttachableWithMetadata
             # Explicit nil return so we don't return false form line above
             nil
           rescue StandardError
-            raise
             errors.add("#{attachment_field}_id".to_sym, "could not be uploaded")
           end
         end
