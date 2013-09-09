@@ -29,7 +29,17 @@ module AttachableWithMetadata
           field_name = "#{attachment_field}_#{metadata_field}"
 
           define_method(field_name) do
-            instance_variable_get("@#{field_name}")
+            if instance_variable_get("@#{field_name}").nil?
+              instance_variable_set "@#{field_name}", send(attachment_field)[metadata_field.to_s]
+            end
+            case metadata_field
+            when :spatial
+              instance_variable_get("@#{field_name}").map{|x| x[1]}.join(',')
+            when :subject
+              instance_variable_get("@#{field_name}").join(',')
+            else
+              instance_variable_get("@#{field_name}")
+            end
           end
           
           define_method("#{field_name}=") do |value|
