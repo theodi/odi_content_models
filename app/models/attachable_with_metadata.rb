@@ -35,10 +35,38 @@ module AttachableWithMetadata
             instance_variable_get("@#{field_name}")
           end
           
-          define_method("#{field_name}=") do |value|
-            if instance_variable_get("@#{field_name}") != value
-              instance_variable_set("@#{attachment_field}_metadata_has_changed", true)
-              instance_variable_set("@#{field_name}", value)
+          case metadata_field
+          when :spatial
+            define_method("#{field_name}=") do |value|
+              # Auto-parse string assignment
+              if value.is_a?(String)
+                 spatial = ['lat', 'lng'].zip(value.split(','))
+                 value = Hash[spatial]
+              end
+              # Store
+              if instance_variable_get("@#{field_name}") != value
+                instance_variable_set("@#{attachment_field}_metadata_has_changed", true)
+                instance_variable_set("@#{field_name}", value)
+              end
+            end
+          when :subject
+            define_method("#{field_name}=") do |value|
+              # Auto-parse string assignment
+              if value.is_a?(String)
+                value = value.split(',')
+              end
+              # Store
+              if instance_variable_get("@#{field_name}") != value
+                instance_variable_set("@#{attachment_field}_metadata_has_changed", true)
+                instance_variable_set("@#{field_name}", value)
+              end
+            end
+          else
+            define_method("#{field_name}=") do |value|
+              if instance_variable_get("@#{field_name}") != value
+                instance_variable_set("@#{attachment_field}_metadata_has_changed", true)
+                instance_variable_set("@#{field_name}", value)
+              end
             end
           end
           
