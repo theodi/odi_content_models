@@ -32,14 +32,7 @@ module AttachableWithMetadata
             if instance_variable_get("@#{field_name}").nil?
               instance_variable_set "@#{field_name}", send(attachment_field)[metadata_field.to_s]
             end
-            case metadata_field
-            when :spatial
-              instance_variable_get("@#{field_name}").map{|x| x[1]}.join(',')
-            when :subject
-              instance_variable_get("@#{field_name}").join(',')
-            else
-              instance_variable_get("@#{field_name}")
-            end
+            instance_variable_get("@#{field_name}")
           end
           
           define_method("#{field_name}=") do |value|
@@ -53,17 +46,9 @@ module AttachableWithMetadata
         
         define_method("#{attachment_field}_metadata_hash") do
           # Get all fields
-          data = Hash[ATTACHMENT_METADATA_FIELDS.map do |metadata_field|
+          Hash[ATTACHMENT_METADATA_FIELDS.map do |metadata_field|
             [metadata_field, instance_variable_get("@#{attachment_field}_#{metadata_field}")]
           end]
-          # Change non-string fields to their proper types
-          data[:subject] = data[:subject] ? data[:subject].split(',') : []
-          if data[:spatial]
-            spatial = ['lat', 'lng'].zip(data[:spatial].split(','))
-            data[:spatial] = Hash[spatial]
-          end
-          # Done
-          data
         end
 
         define_method("#{attachment_field}_metadata_has_changed?") do

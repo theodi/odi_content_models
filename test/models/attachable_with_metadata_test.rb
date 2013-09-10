@@ -44,7 +44,7 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
         :description => nil,
         :creator     => "Bob Fish",
         :attribution => nil,
-        :subject     => [],
+        :subject     => nil,
         :license     => nil,
         :spatial     => nil,
       })
@@ -75,7 +75,7 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
         :description => nil,
         :creator     => "Bob Fish",
         :attribution => nil,
-        :subject     => [],
+        :subject     => nil,
         :license     => nil,
         :spatial     => nil,
       }).returns(response)
