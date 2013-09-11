@@ -86,7 +86,9 @@ module AttachableWithMetadata
         define_method("update_#{attachment_field}_metadata") do
           raise ApiClientNotPresent unless Attachable.asset_api_client
           begin
-            response = Attachable.asset_api_client.update_asset(send(:"#{attachment_field}_metadata_hash"))
+            asset_id = send(attachment_field)['id'].split('/').last
+            response = Attachable.asset_api_client.update_asset(asset_id,
+                         send(:"#{attachment_field}_metadata_hash"))
             # Clear metadata tracking flag
             instance_variable_set("@#{attachment_field}_metadata_has_changed", false)
             # Explicit nil return so we don't return false form line above
