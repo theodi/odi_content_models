@@ -38,7 +38,8 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
   context "uploading changes" do
 
     should "should upload metadata changes when saving" do
-      MockAssetApi.any_instance.expects(:update_asset).with({ 
+      @edition.expects(:image).returns('id' => 'http://whatever/assets/123')
+      MockAssetApi.any_instance.expects(:update_asset).with('123', { 
         :title       => nil,
         :source      => nil,
         :description => nil,
