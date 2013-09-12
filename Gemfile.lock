@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/theodi/gds-api-adapters.git
-  revision: 3997e0862f2e0300744a31f53271ae9205eca5cd
+  revision: cf3b40333b6dfb7742f11ba793a590a0b54070d0
   specs:
     gds-api-adapters (7.5.0)
       link_header
