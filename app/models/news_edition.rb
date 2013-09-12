@@ -1,7 +1,8 @@
 require "edition"
+require 'attachable_with_metadata'
 
 class NewsEdition < Edition
-  include Attachable
+  include AttachableWithMetadata
 
   field :subtitle,      type: String
   field :body,          type: String
@@ -11,9 +12,9 @@ class NewsEdition < Edition
 
   @fields_to_clone = [:subtitle, :body]
 
-  attaches :image
+  attaches_with_metadata :image
 
-  attaches :video
+  attaches_with_metadata :video
 
   def whole_body
     body
