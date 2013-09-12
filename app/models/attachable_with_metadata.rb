@@ -33,7 +33,8 @@ module AttachableWithMetadata
           # Loads from asset manager API if not set
           define_method(field_name) do
             if instance_variable_get("@#{field_name}").nil?
-              instance_variable_set "@#{field_name}", send(attachment_field)[metadata_field.to_s]
+              att = send(attachment_field)
+              instance_variable_set "@#{field_name}", att[metadata_field.to_s] if att
             end
             instance_variable_get("@#{field_name}")
           end
