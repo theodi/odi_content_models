@@ -31,7 +31,7 @@ class PersonEdition < Edition
   end
 
   def rendering_app
-    "people"
+    "www"
   end
 
 
