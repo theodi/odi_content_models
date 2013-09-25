@@ -7,13 +7,12 @@ class PersonEdition < Edition
   # type (Staff / Trainer / Member / Start-up / Artist):  applied by tag
   field    :honorific_prefix, type: String
   field    :honorific_suffix, type: String
-  # first/last name: uses artefact name
+  field    :affiliation,      type: String
+  # name: uses artefact name
   field    :role,             type: String
   field    :description,      type: String
   attaches :image
   field    :url,              type: String
-  field    :contact_title,    type: String
-  field    :contact_name,     type: String
   field    :telephone,        type: String
   field    :email,            type: String
   field    :twitter,          type: String
@@ -23,9 +22,8 @@ class PersonEdition < Edition
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
   @fields_to_clone = [
-    :honorific_prefix, :honorific_suffix, :role, :description, :url, 
-    :contact_title, :contact_name, :telephone, :email, 
-    :twitter, :linkedin, :github, 
+    :honorific_prefix, :honorific_suffix, :affiliation, :role, :description, :url, 
+    :telephone, :email, :twitter, :linkedin, :github, 
   ]
   
   def whole_body
