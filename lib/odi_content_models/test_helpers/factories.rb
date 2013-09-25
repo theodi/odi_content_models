@@ -43,6 +43,9 @@ FactoryGirl.define do
   factory :person_edition, parent: :edition, :class => 'PersonEdition' do
   end
 
+  factory :timed_item_edition, parent: :edition, :class => 'TimedItemEdition' do
+  end
+
   factory :news_edition, parent: :edition, :class => 'NewsEdition' do
   end
   
