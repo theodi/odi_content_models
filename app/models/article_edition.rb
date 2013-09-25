@@ -19,7 +19,7 @@ class ArticleEdition < Edition
   end
 
   def rendering_app
-    "news"
+    "www"
   end
 
 end
