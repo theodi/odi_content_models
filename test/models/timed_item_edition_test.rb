@@ -9,13 +9,13 @@ class TimedItemEditionTest < ActiveSupport::TestCase
     closing = 1.month.from_now.to_datetime
     item = FactoryGirl.build(:timed_item_edition, panopticon_id: @artefact.id)
     item.content = "Content goes here"
-    item.closes_at = closing
+    item.end_date = closing
 
     item.safely.save!
 
     item = TimedItemEdition.first
     assert_equal "Content goes here", item.content
-    assert_equal closing.to_s, item.closes_at.to_s
+    assert_equal closing.to_s, item.end_date.to_s
   end
   
   should "give a friendly (legacy supporting) description of its format" do
@@ -37,11 +37,11 @@ class TimedItemEditionTest < ActiveSupport::TestCase
     item = FactoryGirl.create(:timed_item_edition,
                           :panopticon_id => @artefact.id,
                           :content => "Clone me",
-                          :closes_at => Date.today,
+                          :end_date => Date.today,
                           :state => "published")
     new_item = item.build_clone
     assert_equal item.content, new_item.content
-    assert_equal item.closes_at.to_s, new_item.closes_at.to_s
+    assert_equal item.end_date.to_s, new_item.end_date.to_s
   end
   
 end
