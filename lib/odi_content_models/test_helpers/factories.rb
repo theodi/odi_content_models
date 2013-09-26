@@ -40,6 +40,9 @@ FactoryGirl.define do
   factory :course_edition, parent: :edition, :class => 'CourseEdition' do
   end
   
+  factory :course_instance_edition, parent: :edition, :class => 'CourseInstanceEdition' do
+  end
+  
   factory :person_edition, parent: :edition, :class => 'PersonEdition' do
   end
 
