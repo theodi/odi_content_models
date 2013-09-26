@@ -2,7 +2,7 @@ require "edition"
 require 'attachable'
 
 class PersonEdition < Edition
-  include Attachable
+  include AttachableWithMetadata
 
   # type (Staff / Trainer / Member / Start-up / Artist):  applied by tag
   field    :honorific_prefix, type: String
@@ -11,13 +11,14 @@ class PersonEdition < Edition
   # name: uses artefact name
   field    :role,             type: String
   field    :description,      type: String
-  attaches :image
   field    :url,              type: String
   field    :telephone,        type: String
   field    :email,            type: String
   field    :twitter,          type: String
   field    :linkedin,         type: String
   field    :github,           type: String
+  
+  attaches_with_metadata :image
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
