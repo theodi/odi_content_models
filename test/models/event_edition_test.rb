@@ -7,8 +7,8 @@ class EventEditionTest < ActiveSupport::TestCase
   
   should "have correct extra fields" do
     n = FactoryGirl.build(:event_edition, panopticon_id: @artefact.id)
-    n.start_date = 1.hour.from_now
-    n.end_date = 2.hours.from_now
+    n.start_date = 1.day.from_now
+    n.end_date = 2.days.from_now
     n.location = "Shoreditch"
     n.description = "description"
     n.booking_url = "http://eventbrite.com/test"
@@ -17,8 +17,8 @@ class EventEditionTest < ActiveSupport::TestCase
     n.safely.save!
 
     n = EventEdition.first
-    assert_equal n.start_date.to_s, 1.hour.from_now.to_s
-    assert_equal n.end_date.to_s, 2.hours.from_now.to_s
+    assert_equal n.start_date.to_s, 1.day.from_now.to_datetime.to_s
+    assert_equal n.end_date.to_s, 2.days.from_now.to_datetime.to_s
     assert_equal n.location, "Shoreditch"
     assert_equal n.description, "description"
     assert_equal n.booking_url, "http://eventbrite.com/test"
