@@ -37,13 +37,25 @@ FactoryGirl.define do
     association :assigned_to, factory: :user
   end
   
+  factory :case_study_edition, parent: :edition, :class => 'CaseStudyEdition' do
+  end
+  
   factory :course_edition, parent: :edition, :class => 'CourseEdition' do
+  end
+  
+  factory :faq_edition, parent: :edition, :class => 'FaqEdition' do
+  end
+  
+  factory :job_edition, parent: :edition, :class => 'JobEdition' do
   end
   
   factory :person_edition, parent: :edition, :class => 'PersonEdition' do
   end
 
-  factory :news_edition, parent: :edition, :class => 'NewsEdition' do
+  factory :timed_item_edition, parent: :edition, :class => 'TimedItemEdition' do
+  end
+
+  factory :article_edition, parent: :edition, :class => 'ArticleEdition' do
   end
   
   factory :organization_edition, parent: :edition, :class => 'OrganizationEdition' do

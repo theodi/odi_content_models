@@ -2,10 +2,14 @@ govuk_formats = Artefact::FORMATS_BY_DEFAULT_OWNING_APP
 
 Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
   'publisher' => [
+    "case_study",
     "course",
-    "news",
     "organization",
-    "person"
+    "article",
+    "person",
+    "timed_item",
+    "faq",
+    "job"
   ],
   'whitehall' => [] # Need to define this empty so that govuk_content_models validators still work. See their slug_validator.rb for reasons.
 }
