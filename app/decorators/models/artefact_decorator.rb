@@ -4,6 +4,7 @@ Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
   'publisher' => [
     "case_study",
     "course",
+    "organization",
     "article",
     "person",
     "timed_item",
