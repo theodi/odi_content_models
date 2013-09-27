@@ -37,6 +37,9 @@ FactoryGirl.define do
     association :assigned_to, factory: :user
   end
   
+  factory :case_study_edition, parent: :edition, :class => 'CaseStudyEdition' do
+  end
+  
   factory :course_edition, parent: :edition, :class => 'CourseEdition' do
   end
   
