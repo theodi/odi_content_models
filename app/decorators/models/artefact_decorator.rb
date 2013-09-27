@@ -3,7 +3,7 @@ govuk_formats = Artefact::FORMATS_BY_DEFAULT_OWNING_APP
 Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
   'publisher' => [
     "course",
-    "news",
+    "article",
     "person",
     "timed_item",
   ],

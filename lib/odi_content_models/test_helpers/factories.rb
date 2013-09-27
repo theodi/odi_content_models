@@ -46,7 +46,7 @@ FactoryGirl.define do
   factory :timed_item_edition, parent: :edition, :class => 'TimedItemEdition' do
   end
 
-  factory :news_edition, parent: :edition, :class => 'NewsEdition' do
+  factory :article_edition, parent: :edition, :class => 'ArticleEdition' do
   end
   
 end
