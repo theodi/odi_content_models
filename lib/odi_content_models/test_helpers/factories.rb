@@ -10,10 +10,13 @@ FactoryGirl.define do
   factory :case_study_edition, parent: :edition, :class => 'CaseStudyEdition' do
   end
   
-  factory :course_edition, parent: :edition, :class => 'CourseEdition' do
+  factory :faq_edition, parent: :edition, :class => 'FaqEdition' do
   end
   
-  factory :faq_edition, parent: :edition, :class => 'FaqEdition' do
+  factory :creative_work_edition, parent: :edition, :class => 'CreativeWorkEdition' do
+  end
+  
+  factory :course_edition, parent: :edition, :class => 'CourseEdition' do
   end
   
   factory :job_edition, parent: :edition, :class => 'JobEdition' do

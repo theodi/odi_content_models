@@ -2,6 +2,7 @@ govuk_formats = Artefact::FORMATS_BY_DEFAULT_OWNING_APP
 
 Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
   'publisher' => [
+    "creative_work",
     "case_study",
     "course",
     "organization",
