@@ -1,22 +1,38 @@
 require "edition"
+require "attachable_with_metadata"
 
 class PersonEdition < Edition
+  include AttachableWithMetadata
 
-  field :biography,      type: String
-  field :twitter,        type: String
-  field :email,          type: String
-  field :gravatar_email, type: String
+  # type (Staff / Trainer / Member / Start-up / Artist):  applied by tag
+  field    :honorific_prefix, type: String
+  field    :honorific_suffix, type: String
+  field    :affiliation,      type: String
+  # name: uses artefact name
+  field    :role,             type: String
+  field    :description,      type: String
+  field    :url,              type: String
+  field    :telephone,        type: String
+  field    :email,            type: String
+  field    :twitter,          type: String
+  field    :linkedin,         type: String
+  field    :github,           type: String
+  
+  attaches_with_metadata :image
 
-  GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:biography]
+  GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  @fields_to_clone = [:biography, :twitter, :email, :gravatar_email]
-
+  @fields_to_clone = [
+    :honorific_prefix, :honorific_suffix, :affiliation, :role, :description, :url, 
+    :telephone, :email, :twitter, :linkedin, :github, 
+  ]
+  
   def whole_body
-    biography
+    description
   end
 
   def rendering_app
-    "people"
+    "www"
   end
 
 
