@@ -25,6 +25,9 @@ FactoryGirl.define do
   factory :job_edition, parent: :edition, :class => 'JobEdition' do
   end
   
+  factory :event_edition, parent: :edition, :class => 'EventEdition' do
+  end
+
   factory :person_edition, parent: :edition, :class => 'PersonEdition' do
   end
 

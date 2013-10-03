@@ -6,6 +6,7 @@ Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
     "case_study",
     "course",
     "course_instance",
+    "event",
     "news",
     "organization",
     "article",
