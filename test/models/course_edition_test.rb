@@ -8,25 +8,13 @@ class CourseEditionTest < ActiveSupport::TestCase
   should "have correct extra fields" do
     c = FactoryGirl.build(:course_edition, panopticon_id: @artefact.id)
     c.length = "5 Days"
-    c.summary = "This is an awesome course"
-    c.outline = "Here is the course's outline y'all"
-    c.outcomes = "This is what you will learn"
-    c.audience = "You!"
-    c.prerequisites = "A brain"
-    c.requirements = "A pencil"
-    c.materials = "Paper"
+    c.description = "This is an awesome course"
 
     c.safely.save!
 
     c = CourseEdition.first
     assert_equal "5 Days", c.length
-    assert_equal "This is an awesome course", c.summary
-    assert_equal "Here is the course's outline y'all", c.outline
-    assert_equal "This is what you will learn", c.outcomes
-    assert_equal "You!", c.audience
-    assert_equal "A brain", c.prerequisites
-    assert_equal "A pencil", c.requirements
-    assert_equal "Paper", c.materials
+    assert_equal "This is an awesome course", c.description
   end
   
   should "give a friendly (legacy supporting) description of its format" do
@@ -35,17 +23,12 @@ class CourseEditionTest < ActiveSupport::TestCase
   end
   
   context "whole_body" do
-    should "contain just the summary" do
+    should "contain just the description" do
       c = FactoryGirl.build(:course_edition,
                             :panopticon_id => @artefact.id,
                             :length => "5 Days",
-                            :summary => "This is an awesome course",
-                            :outline => "Here is the course's outline y'all",
-                            :outcomes => "This is what you will learn",
-                            :audience => "You!",
-                            :prerequisites => "A brain",
-                            :requirements => "A pencil",
-                            :materials => "Paper")
+                            :description => "This is an awesome course",
+)
       expected = "This is an awesome course"
       assert_equal expected, c.whole_body
     end
@@ -55,24 +38,12 @@ class CourseEditionTest < ActiveSupport::TestCase
     course = FactoryGirl.create(:course_edition,
                           :panopticon_id => @artefact.id,
                           :length => "5 Days",
-                          :summary => "This is an awesome course",
-                          :outline => "Here is the course's outline y'all",
-                          :outcomes => "This is what you will learn",
-                          :audience => "You!",
-                          :prerequisites => "A brain",
-                          :requirements => "A pencil",
-                          :materials => "Paper",
+                          :description => "This is an awesome course",
                           :state => "published")
     new_course = course.build_clone
 
     assert_equal course.length, new_course.length
-    assert_equal course.summary, new_course.summary
-    assert_equal course.outline, new_course.outline
-    assert_equal course.outcomes, new_course.outcomes
-    assert_equal course.audience, new_course.audience
-    assert_equal course.prerequisites, new_course.prerequisites
-    assert_equal course.requirements, new_course.requirements
-    assert_equal course.materials, new_course.materials
+    assert_equal course.description, new_course.description
 
   end
   

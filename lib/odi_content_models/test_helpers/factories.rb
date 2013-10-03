@@ -3,38 +3,17 @@ require "answer_edition"
 require "artefact"
 require "tag"
 require "user"
+require "govuk_content_models/test_helpers/factories"
 
 FactoryGirl.define do
   
-  factory :user do
-    sequence(:uid) { |n| "uid-#{n}"}
-    sequence(:name) { |n| "Joe Bloggs #{n}" }
-    sequence(:email) { |n| "joe#{n}@bloggs.com" }
-    if defined?(GDS::SSO::Config)
-      # Grant permission to signin to the app using the gem
-      permissions { ["signin"] }
-    end
+  factory :case_study_edition, parent: :edition, :class => 'CaseStudyEdition' do
   end
   
-  factory :artefact do
-    sequence(:name) { |n| "Artefact #{n}" }
-    sequence(:slug) { |n| "slug-#{n}" }
-    kind            Artefact::FORMATS.first
-    owning_app      'publisher'
+  factory :faq_edition, parent: :edition, :class => 'FaqEdition' do
   end
   
-  factory :edition, class: AnswerEdition do
-    panopticon_id {
-        a = create(:artefact)
-        a.id
-      }
-
-    sequence(:slug) { |n| "slug-#{n}" }
-    sequence(:title) { |n| "A key answer to your question #{n}" }
-
-    section "test:subsection test"
-
-    association :assigned_to, factory: :user
+  factory :creative_work_edition, parent: :edition, :class => 'CreativeWorkEdition' do
   end
   
   factory :course_edition, parent: :edition, :class => 'CourseEdition' do
@@ -45,11 +24,23 @@ FactoryGirl.define do
   
   factory :node_edition, parent: :edition, :class => 'NodeEdition' do
   end
+    
+  factory :job_edition, parent: :edition, :class => 'JobEdition' do
+  end
+  
+  factory :event_edition, parent: :edition, :class => 'EventEdition' do
+  end
 
   factory :person_edition, parent: :edition, :class => 'PersonEdition' do
   end
 
-  factory :news_edition, parent: :edition, :class => 'NewsEdition' do
+  factory :timed_item_edition, parent: :edition, :class => 'TimedItemEdition' do
+  end
+
+  factory :article_edition, parent: :edition, :class => 'ArticleEdition' do
+  end
+  
+  factory :organization_edition, parent: :edition, :class => 'OrganizationEdition' do
   end
   
 end

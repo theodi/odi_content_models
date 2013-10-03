@@ -1,5 +1,5 @@
 require "edition"
-require 'attachable'
+require "attachable_with_metadata"
 
 class PersonEdition < Edition
   include AttachableWithMetadata
