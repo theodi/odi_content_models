@@ -37,8 +37,8 @@ class NodeEdition < Edition
   
   def latlng=(latlng)
     ll = latlng.split(',')
-    location[0] = ll[0]
-    location[1] = ll[1]
+    location[0] = ll[0].to_f
+    location[1] = ll[1].to_f
   end
 
 end
