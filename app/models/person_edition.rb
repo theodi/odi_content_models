@@ -17,6 +17,7 @@ class PersonEdition < Edition
   field    :twitter,          type: String
   field    :linkedin,         type: String
   field    :github,           type: String
+  field    :node,             type: String
   
   attaches_with_metadata :image
 
@@ -24,7 +25,7 @@ class PersonEdition < Edition
 
   @fields_to_clone = [
     :honorific_prefix, :honorific_suffix, :affiliation, :role, :description, :url, 
-    :telephone, :email, :twitter, :linkedin, :github, 
+    :telephone, :email, :twitter, :linkedin, :github, :node
   ]
   
   def whole_body

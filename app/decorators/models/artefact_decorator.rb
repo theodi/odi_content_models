@@ -8,6 +8,8 @@ Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
     "course_instance",
     "event",
     "news",
+    "node",
+    "person",
     "organization",
     "article",
     "person",
