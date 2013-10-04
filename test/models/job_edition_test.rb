@@ -10,7 +10,7 @@ class JobEditionTest < ActiveSupport::TestCase
     p.location = "The Moon"
     p.salary = "20p/decade"
     p.description = "description"
-    p.closing_date = 1.month.from_now
+    p.closing_date = "2013-01-02"
     
     p.safely.save!
 
@@ -18,7 +18,7 @@ class JobEditionTest < ActiveSupport::TestCase
     assert_equal p.location, "The Moon"
     assert_equal p.salary, "20p/decade"
     assert_equal p.description, "description"
-    assert_equal p.closing_date.to_s, 1.month.from_now.to_s
+    assert_equal p.closing_date.to_s, "2013-01-02"
   end
   
   should "give a friendly (legacy supporting) description of its format" do
