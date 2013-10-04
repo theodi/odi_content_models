@@ -8,7 +8,7 @@ class NodeEdition < Edition
   field :level,         type: Integer
   field :region,        type: String # ISO country code
   attaches_with_metadata :hero_image
-  field :location,      type: Array,  spacial: true
+  field :location,      type: Array, spacial: true, default: [0,0]
   field :description,   type: String
   # people are defined using PersonEdition#node
   field :telephone,     type: String
@@ -29,6 +29,16 @@ class NodeEdition < Edition
 
   def rendering_app
     "www"
+  end
+  
+  def latlng
+    [location[0],location[1]].join(',')
+  end
+  
+  def latlng=(latlng)
+    ll = latlng.split(',')
+    location[0] = ll[0].to_f
+    location[1] = ll[1].to_f
   end
 
 end
