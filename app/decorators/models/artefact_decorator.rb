@@ -24,4 +24,12 @@ Artefact::FORMATS = Artefact::FORMATS_BY_DEFAULT_OWNING_APP.values.flatten + gov
 
 class Artefact
   field "author", type: String
+  
+  def self.category_tags
+    [:person, :timed_item, :asset, :article, :organization]
+  end
+  
+  stores_tags_for :sections, :writing_teams, :propositions,
+                  :keywords, :legacy_sources, category_tags
+  
 end
