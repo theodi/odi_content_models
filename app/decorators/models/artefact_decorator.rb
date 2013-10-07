@@ -25,11 +25,21 @@ Artefact::FORMATS = Artefact::FORMATS_BY_DEFAULT_OWNING_APP.values.flatten + gov
 class Artefact
   field "author", type: String
   
+  validate :check_tags
+  
   def self.category_tags
     [:person, :timed_item, :asset, :article, :organization]
   end
   
   stores_tags_for :sections, :writing_teams, :propositions,
                   :keywords, :legacy_sources, category_tags
+  
+  private
+  
+  def check_tags
+    if self.class.category_tags.include? self.kind.to_sym
+      errors.add(self.kind.to_sym, "tag must be specified") if self.tag_ids.empty?
+    end
+  end
   
 end
