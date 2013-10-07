@@ -6,7 +6,7 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    c = FactoryGirl.build(:course_instance_edition, panopticon_id: @artefact.id)
+    c = CourseInstanceEdition.create(title: "Course Instance Edition", panopticon_id: @artefact.id)
     c.description = "This is an awesome course_instance"
 
     c.safely.save!
@@ -22,19 +22,19 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      c = FactoryGirl.build(:course_instance_edition,
-                            :panopticon_id => @artefact.id,
-                            :description => "This is an awesome course_instance")
+      c =  CourseEdition.create(:title => "Course Instance Edition",
+                                :panopticon_id => @artefact.id,
+                                :description => "This is an awesome course_instance")
       expected = "This is an awesome course_instance"
       assert_equal expected, c.whole_body
     end
   end
   
   should "clone extra fields when cloning edition" do
-    course_instance = FactoryGirl.create(:course_instance_edition,
-                          :panopticon_id => @artefact.id,
-                          :description => "This is an awesome course_instance",
-                          :state => "published")
+    course_instance = CourseEdition.create(:title => "Course Instance Edition",
+                                          :panopticon_id => @artefact.id,
+                                          :description => "This is an awesome course_instance",
+                                          :state => "published")
     new_course_instance = course_instance.build_clone
 
     assert_equal course_instance.description, new_course_instance.description

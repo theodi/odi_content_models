@@ -6,7 +6,7 @@ class JobEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    p = FactoryGirl.build(:job_edition, panopticon_id: @artefact.id)
+    p = JobEdition.create(title: "Job edition", panopticon_id: @artefact.id)
     p.location = "The Moon"
     p.salary = "20p/decade"
     p.description = "description"
@@ -28,7 +28,7 @@ class JobEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      p = FactoryGirl.build(:job_edition,
+      p = JobEdition.create(:title => "Job edition",
                             :panopticon_id => @artefact.id,
                             :location => "The Moon",
                             :salary => "20p/decade",
@@ -40,7 +40,7 @@ class JobEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    job = FactoryGirl.create(:job_edition,
+    job = JobEdition.create(:title => "Job edition",
                           :panopticon_id => @artefact.id,
                           :location => "The Moon",
                           :salary => "20p/decade",

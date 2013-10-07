@@ -6,7 +6,7 @@ class OrganizationEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    p = FactoryGirl.build(:organization_edition, panopticon_id: @artefact.id)
+    p = OrganizationEdition.create(title: "Organization edition", panopticon_id: @artefact.id)
     p.description  = "description"
     p.joined_at    = Date.today
     p.tagline      = "tagline"
@@ -42,16 +42,16 @@ class OrganizationEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      p = FactoryGirl.build(:organization_edition,
-                            :panopticon_id => @artefact.id,
-                            :description => "description")
+      p = OrganizationEdition.create(:title => "Organization edition",
+                                    :panopticon_id => @artefact.id,
+                                    :description => "description")
       expected = "description"
       assert_equal expected, p.whole_body
     end
   end
   
   should "clone extra fields when cloning edition" do
-    org = FactoryGirl.create(:organization_edition,
+    org = OrganizationEdition.create(:title => "Organization edition",
                           :panopticon_id => @artefact.id,
                           :description   => "description",
                           :joined_at     => Date.today,

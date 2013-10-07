@@ -6,7 +6,7 @@ class CreativeWorkEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    n = FactoryGirl.build(:creative_work_edition, panopticon_id: @artefact.id)
+    n =  CreativeWorkEdition.create(title: "Creative Work Edition", panopticon_id: @artefact.id)
     n.description = "Some long description here, blah, blah, blah"
     n.date_published = Date.today
 
@@ -24,22 +24,22 @@ class CreativeWorkEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      n = FactoryGirl.build(:creative_work_edition,
-                            :panopticon_id => @artefact.id,
-                            :description => "Some long description here, blah, blah, blah",
-                            :date_published => Date.today
-                            )
+      n = CreativeWorkEdition.create(:title => "Creative Work Edition",
+                                    :panopticon_id => @artefact.id,
+                                    :description => "Some long description here, blah, blah, blah",
+                                    :date_published => Date.today
+                                    )
       expected = "Some long description here, blah, blah, blah"
       assert_equal expected, n.whole_body
     end
   end
   
   should "clone extra fields when cloning edition" do
-    creative_work = FactoryGirl.create(:creative_work_edition,
-                          :panopticon_id => @artefact.id,
-                          :description => "Some long description here, blah, blah, blah",
-                          :date_published => Date.today,
-                          :state => "published")
+    creative_work = CreativeWorkEdition.create(:title => "Creative Work Edition",
+                                              :panopticon_id => @artefact.id,
+                                              :description => "Some long description here, blah, blah, blah",
+                                              :date_published => Date.today,
+                                              :state => "published")
     new_creative_work = creative_work.build_clone
 
     assert_equal creative_work.description, new_creative_work.description

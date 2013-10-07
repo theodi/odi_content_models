@@ -2,11 +2,11 @@ require "test_helper"
 
 class FaqEditionTest < ActiveSupport::TestCase
   setup do
-    @artefact = FactoryGirl.create(:artefact)
+    @artefact = FactoryGirl.create(:artefact, kind: "faq")
   end
   
   should "have correct extra fields" do
-    p = FactoryGirl.build(:faq_edition, panopticon_id: @artefact.id)
+    p = FaqEdition.create(title: "FAQ Edition", panopticon_id: @artefact.id)
     p.content = "description"
     
     p.safely.save!
@@ -22,7 +22,7 @@ class FaqEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the content" do
-      p = FactoryGirl.build(:faq_edition,
+      p = FaqEdition.create(:title => "FAQ Edition",
                             :panopticon_id => @artefact.id,
                             :content => "description")
       expected = "description"
@@ -31,7 +31,7 @@ class FaqEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    faq = FactoryGirl.create(:faq_edition,
+    faq = FaqEdition.create(:title => "FAQ Edition",
                           :panopticon_id => @artefact.id,
                           :content => "description",
                           :state => "published")

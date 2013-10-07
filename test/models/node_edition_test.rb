@@ -14,7 +14,7 @@ class NodeEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    n = FactoryGirl.build(:node_edition, panopticon_id: @artefact.id)
+    n = NodeEdition.create(title: "Node Edition", panopticon_id: @artefact.id)
     
     n.level = @level
     n.region = @region
@@ -46,7 +46,7 @@ class NodeEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the body" do
-      n = FactoryGirl.build(:node_edition,
+      n = NodeEdition.create(:title => "Node Edition",
                             :panopticon_id => @artefact.id,
                             :description => @description
                             )
@@ -55,7 +55,7 @@ class NodeEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    node = FactoryGirl.create(:node_edition,
+    node = NodeEdition.create(:title => "Node Edition",
                           :panopticon_id => @artefact.id,
                           :level => @level,
                           :region => @region,

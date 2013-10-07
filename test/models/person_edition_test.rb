@@ -6,7 +6,7 @@ class PersonEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    p = FactoryGirl.build(:person_edition, panopticon_id: @artefact.id)
+    p = PersonEdition.create(title: "Person Edition", panopticon_id: @artefact.id)
     p.description = "Selfies direct trade fap, velit deep v street art salvia laborum banjo pour-over Godard mixtape keffiyeh literally tumblr. Next level Austin sapiente ugh, voluptate cred kogi ex fixie photo booth ullamco nostrud Odd Future."
     p.twitter = "example"
     p.email = "email@example.com"
@@ -28,7 +28,7 @@ class PersonEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      p = FactoryGirl.build(:person_edition,
+      p = PersonEdition.create(:title => "Person Edition",
                             :panopticon_id => @artefact.id,
                             :description => "Selfies direct trade fap, velit deep v street art salvia laborum banjo pour-over Godard mixtape keffiyeh literally tumblr. Next level Austin sapiente ugh, voluptate cred kogi ex fixie photo booth ullamco nostrud Odd Future.",
                             :twitter => "example",
@@ -39,7 +39,7 @@ class PersonEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    person = FactoryGirl.create(:person_edition,
+    person = PersonEdition.create(:title => "Person Edition",
                           :panopticon_id => @artefact.id,
                           :description => "Selfies direct trade fap, velit deep v street art salvia laborum banjo pour-over Godard mixtape keffiyeh literally tumblr. Next level Austin sapiente ugh, voluptate cred kogi ex fixie photo booth ullamco nostrud Odd Future.",
                           :twitter => "example",
