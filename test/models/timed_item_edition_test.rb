@@ -7,7 +7,7 @@ class TimedItemEditionTest < ActiveSupport::TestCase
   
   should "have correct extra fields" do
     closing = 1.month.from_now.to_datetime
-    item = FactoryGirl.build(:timed_item_edition, panopticon_id: @artefact.id)
+    item = TimedItemEdition.create(title: "Timed Item Edition", panopticon_id: @artefact.id)
     item.content = "Content goes here"
     item.end_date = closing
 
@@ -25,7 +25,7 @@ class TimedItemEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the content" do
-      item = FactoryGirl.build(:timed_item_edition,
+      item = TimedItemEdition.create(:title => "Timed Item Edition",
                                :panopticon_id => @artefact.id,
                                :content => "Content here")
       expected = "Content here"
@@ -34,7 +34,7 @@ class TimedItemEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    item = FactoryGirl.create(:timed_item_edition,
+    item = TimedItemEdition.create(:title => "Timed Item Edition",
                           :panopticon_id => @artefact.id,
                           :content => "Clone me",
                           :end_date => Date.today,

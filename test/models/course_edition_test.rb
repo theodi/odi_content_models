@@ -6,7 +6,7 @@ class CourseEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    c = FactoryGirl.build(:course_edition, panopticon_id: @artefact.id)
+    c = CourseEdition.create(title: "Course Edition", panopticon_id: @artefact.id)
     c.length = "5 Days"
     c.description = "This is an awesome course"
 
@@ -24,22 +24,22 @@ class CourseEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      c = FactoryGirl.build(:course_edition,
-                            :panopticon_id => @artefact.id,
-                            :length => "5 Days",
-                            :description => "This is an awesome course",
-)
+      c = CourseEdition.create(:title => "Course Edition",
+                               :panopticon_id => @artefact.id,
+                               :length => "5 Days",
+                               :description => "This is an awesome course",
+                               ) 
       expected = "This is an awesome course"
       assert_equal expected, c.whole_body
     end
   end
   
   should "clone extra fields when cloning edition" do
-    course = FactoryGirl.create(:course_edition,
-                          :panopticon_id => @artefact.id,
-                          :length => "5 Days",
-                          :description => "This is an awesome course",
-                          :state => "published")
+    course = CourseEdition.create(:title => "Course Edition",
+                                  :panopticon_id => @artefact.id,
+                                  :length => "5 Days",
+                                  :description => "This is an awesome course",
+                                  :state => "published")
     new_course = course.build_clone
 
     assert_equal course.length, new_course.length

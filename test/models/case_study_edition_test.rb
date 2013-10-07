@@ -6,7 +6,7 @@ class CaseStudyEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    n = FactoryGirl.build(:case_study_edition, panopticon_id: @artefact.id)
+    n = CaseStudyEdition.create(:title => "Case Study", :panopticon_id => @artefact.id)
     n.content                   = "Some long description here, blah, blah, blah"
     n.url                       = "http://bbc.co.uk"
     n.media_enquiries_name      = "Bob Fish"
@@ -30,24 +30,23 @@ class CaseStudyEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the content" do
-      n = FactoryGirl.build(:case_study_edition,
-                            :panopticon_id => @artefact.id,
-                            :content => "Some long description here, blah, blah, blah",
-                            )
+      n = CaseStudyEdition.create(:title => "Case Study", 
+                                  :panopticon_id => @artefact.id,
+                                  :content => "Some long description here, blah, blah, blah")
       expected = "Some long description here, blah, blah, blah"
       assert_equal expected, n.whole_body
     end
   end
   
   should "clone extra fields when cloning edition" do
-    case_study = FactoryGirl.create(:case_study_edition,
-                          :panopticon_id => @artefact.id,
-                          :content => "Some long description here, blah, blah, blah",
-                          :url => "http://bbc.co.uk",
-                          :media_enquiries_name => "Bob Fish",
-                          :media_enquiries_email => "bob@example.com",
-                          :media_enquiries_telephone => "1234",
-                          :state => "published")
+    case_study = CaseStudyEdition.create(:title => "Case Study", 
+                                         :panopticon_id => @artefact.id,
+                                         :content => "Some long description here, blah, blah, blah",
+                                         :url => "http://bbc.co.uk",
+                                         :media_enquiries_name => "Bob Fish",
+                                         :media_enquiries_email => "bob@example.com",
+                                         :media_enquiries_telephone => "1234",
+                                         :state => "published")
     new_case_study = case_study.build_clone
 
     assert_equal case_study.content, new_case_study.content

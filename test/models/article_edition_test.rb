@@ -5,8 +5,8 @@ class ArticleEditionTest < ActiveSupport::TestCase
     @artefact = FactoryGirl.create(:artefact)
   end
   
-  should "have correct extra fields" do
-    n = FactoryGirl.build(:article_edition, panopticon_id: @artefact.id)
+  should "have correct extra fields" do    
+    n = ArticleEdition.create(:title => "Article", :panopticon_id => @artefact.id)
     n.content                   = "Some long description here, blah, blah, blah"
     n.url                       = "http://bbc.co.uk"
     n.media_enquiries_name      = "Bob Fish"
@@ -30,17 +30,16 @@ class ArticleEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the content" do
-      n = FactoryGirl.build(:article_edition,
-                            :panopticon_id => @artefact.id,
-                            :content => "Some long description here, blah, blah, blah",
-                            )
+      n = ArticleEdition.create(:title => "Article", 
+                                :panopticon_id => @artefact.id,
+                                :content => "Some long description here, blah, blah, blah")
       expected = "Some long description here, blah, blah, blah"
       assert_equal expected, n.whole_body
     end
   end
   
   should "clone extra fields when cloning edition" do
-    article = FactoryGirl.create(:article_edition,
+    article = ArticleEdition.create(:title => "Article",
                           :panopticon_id => @artefact.id,
                           :content => "Some long description here, blah, blah, blah",
                           :url => "http://bbc.co.uk",

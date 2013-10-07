@@ -6,7 +6,7 @@ class EventEditionTest < ActiveSupport::TestCase
   end
   
   should "have correct extra fields" do
-    n = FactoryGirl.build(:event_edition, panopticon_id: @artefact.id)
+    n = EventEdition.create(title: "Event Edition", panopticon_id: @artefact.id)
     n.start_date = 1.day.from_now
     n.end_date = 2.days.from_now
     n.location = "Shoreditch"
@@ -32,7 +32,7 @@ class EventEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      n = FactoryGirl.build(:event_edition,
+      n = EventEdition.create(:title => "Event Edition",
                             :panopticon_id => @artefact.id,
                             :start_date => 1.hour.from_now,
                             :end_date => 2.hours.from_now,
@@ -46,7 +46,7 @@ class EventEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    event = FactoryGirl.create(:event_edition,
+    event = EventEdition.create(:title => "Event Edition",
                           :panopticon_id => @artefact.id,
                           :start_date => 1.hour.from_now,
                           :end_date => 2.hours.from_now,
