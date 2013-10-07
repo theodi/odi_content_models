@@ -16,6 +16,8 @@ class UserTest < ActiveSupport::TestCase
         }
       }
     }
+    # Create a staff tag for testing purposes, ordinarily this would just exist
+    Tag.create(title: "Staff", tag_type: "person", tag_id: "people/staff")
     @user = User.find_for_gds_oauth(auth_hash).reload
   end
   
