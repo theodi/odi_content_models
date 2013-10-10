@@ -10,7 +10,6 @@ class PersonEdition < Edition
   field    :affiliation,      type: String
   # name: uses artefact name
   field    :role,             type: String
-  field    :team,             type: String
   field    :description,      type: String
   field    :url,              type: String
   field    :telephone,        type: String
