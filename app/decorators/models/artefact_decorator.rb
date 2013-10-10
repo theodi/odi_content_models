@@ -32,7 +32,7 @@ class Artefact
   end
   
   stores_tags_for :sections, :writing_teams, :propositions,
-                  :keywords, :legacy_sources, category_tags
+                  :keywords, :legacy_sources, :team, category_tags
   
   private
   
