@@ -26,6 +26,7 @@ class Artefact
   field "author", type: String
   
   validate :check_tags
+  validate :check_team
   
   def self.category_tags
     [:person, :timed_item, :asset, :article, :organization]
@@ -42,4 +43,11 @@ class Artefact
     end
   end
   
+  def check_team
+    if self.tag_ids.include? "team"
+      unless self.tag_ids.any? { |t| Tag.where(:tag_type => "team").collect{ |t| t.tag_id }.include? t }
+        errors.add(:team, "artefacts must have a team specified")
+      end
+    end
+  end
 end
