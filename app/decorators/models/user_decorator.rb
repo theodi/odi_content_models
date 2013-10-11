@@ -17,7 +17,7 @@ class User
                 :kind          => "Person", 
                 :owning_app    => "publisher", 
                 :tag_ids       => ["people"],
-                :person        => ["people/staff"],
+                :person        => ["writers"],
                 :rendering_app => "frontend"
               )
        a.save
