@@ -9,11 +9,12 @@ class CourseInstanceEdition < Edition
   field :location,      type: String
   field :price,         type: String
   field :description,   type: String
+  field :url,           type: String
   field :trainers,      type: Array # need a way of selecting multiple people here
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
   
-  @fields_to_clone = [:course, :date, :location, :price, :description, :trainers]
+  @fields_to_clone = [:course, :date, :location, :price, :description, :trainers, :url]
 
   def whole_body
     description
