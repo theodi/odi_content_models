@@ -27,6 +27,7 @@ class CreativeWorkEditionTest < ActiveSupport::TestCase
       n = CreativeWorkEdition.create(:title => "Creative Work Edition",
                                     :panopticon_id => @artefact.id,
                                     :description => "Some long description here, blah, blah, blah",
+                                    :artist => "2131423423423",
                                     :date_published => Date.today
                                     )
       expected = "Some long description here, blah, blah, blah"
@@ -38,12 +39,14 @@ class CreativeWorkEditionTest < ActiveSupport::TestCase
     creative_work = CreativeWorkEdition.create(:title => "Creative Work Edition",
                                               :panopticon_id => @artefact.id,
                                               :description => "Some long description here, blah, blah, blah",
+                                              :artist => "2131423423423",
                                               :date_published => Date.today,
                                               :state => "published")
     new_creative_work = creative_work.build_clone
 
     assert_equal creative_work.description, new_creative_work.description
     assert_equal creative_work.date_published, new_creative_work.date_published
+    assert_equal creative_work.artist, new_creative_work.artist
   end
 
 end
