@@ -8,10 +8,11 @@ class CreativeWorkEdition < Edition
   # title uses artefact name field
   field :date_published, type: Date
   field :description,    type: String
+  field :artist,         type: String
   
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  @fields_to_clone = [:date_published, :description]
+  @fields_to_clone = [:date_published, :description, :artist]
 
   attaches :thumbnail
   attaches_with_metadata :file
