@@ -5,7 +5,10 @@ class NodeEditionTest < ActiveSupport::TestCase
     @artefact = FactoryGirl.create(:artefact)
     @level = 1
     @region = "GB"
+    @host = "Some guys"
+    @area = "Birmingham"
     @location = [52.323434, -1.432443]
+    @url = "http://www.example.com"
     @description = "Some long description here, blah, blah, blah"
     @telephone = "0121 1234 567"
     @email = "example@example.com"
@@ -17,8 +20,11 @@ class NodeEditionTest < ActiveSupport::TestCase
     n = NodeEdition.create(title: "Node Edition", panopticon_id: @artefact.id)
     
     n.level = @level
+    n.host = @host
     n.region = @region
+    n.area = @area
     n.location = @location
+    n.url = @url
     n.description = @description
     n.telephone = @telephone
     n.email = @email
@@ -31,12 +37,16 @@ class NodeEditionTest < ActiveSupport::TestCase
 
     assert_equal @level, n.level
     assert_equal @region, n.region
+    assert_equal @host, n.host
+    assert_equal @area, n.area
     assert_equal @location, n.location
+    assert_equal @url, n.url
     assert_equal @description, n.description
     assert_equal @telephone, n.telephone
     assert_equal @email, n.email
     assert_equal @twitter, n.twitter
     assert_equal @linkedin, n.linkedin
+    assert_equal true, n.active
   end
   
   should "give a friendly (legacy supporting) description of its format" do
@@ -57,25 +67,34 @@ class NodeEditionTest < ActiveSupport::TestCase
   should "clone extra fields when cloning edition" do
     node = NodeEdition.create(:title => "Node Edition",
                           :panopticon_id => @artefact.id,
+                          :host => @host,
                           :level => @level,
                           :region => @region,
+                          :area => @area,
                           :location => @location,
+                          :url => @url,
                           :description => @description,
                           :telephone => @telephone,
                           :email => @email,
                           :twitter => @twitter,
                           :linkedin => @linkedin,
+                          :active => false,
                           :state => "published")
     new_node = node.build_clone
 
     assert_equal node.level, new_node.level
+    assert_equal node.host, new_node.host
     assert_equal node.region, new_node.region
+    assert_equal node.area, new_node.area
     assert_equal node.location, new_node.location
+    assert_equal node.url, new_node.url
     assert_equal node.description, new_node.description
     assert_equal node.telephone, new_node.telephone
     assert_equal node.email, new_node.email
     assert_equal node.twitter, new_node.twitter
     assert_equal node.linkedin, new_node.linkedin
+    assert_equal node.linkedin, new_node.linkedin
+    assert_equal false, new_node.active
   end
 
 end
