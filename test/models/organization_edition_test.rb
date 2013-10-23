@@ -80,4 +80,34 @@ class OrganizationEditionTest < ActiveSupport::TestCase
     assert_equal new_org.linkedin, org.linkedin
   end
   
+  context "generating paths" do
+
+    should "creates /* paths for untagged orgs" do
+      artefact = FactoryGirl.create(:artefact)
+      n = OrganizationEdition.create(:title         => "Organization", 
+                                     :panopticon_id => artefact.id,
+                                     :slug          => "testing")
+      assert_equal '/testing', n.rendering_path
+    end
+
+    should "creates /start-ups/* paths for startups" do
+      FactoryGirl.create(:tag, :tag_id => "start-up", :tag_type => 'organization', :title => "Organization Type")
+      artefact = FactoryGirl.create(:artefact, :organization => ['start-up'])
+      n = OrganizationEdition.create(:title         => "Organization", 
+                                     :panopticon_id => artefact.id,
+                                     :slug          => "testing")
+      assert_equal '/start-ups/testing', n.rendering_path
+    end
+
+    should "creates /members/* paths for members" do
+      FactoryGirl.create(:tag, :tag_id => "member", :tag_type => 'organization', :title => "Organization Type")
+      artefact = FactoryGirl.create(:artefact, :organization => ['member'])
+      n = OrganizationEdition.create(:title         => "Organization", 
+                                     :panopticon_id => artefact.id,
+                                     :slug          => "testing")
+      assert_equal '/members/testing', n.rendering_path
+    end
+
+  end
+
 end
