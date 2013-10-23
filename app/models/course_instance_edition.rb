@@ -24,4 +24,8 @@ class CourseInstanceEdition < Edition
     "www"
   end
   
+  def rendering_path
+    "/courses/#{course}/#{date.to_date.to_s}"
+  end
+
 end

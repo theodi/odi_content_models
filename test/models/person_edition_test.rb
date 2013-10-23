@@ -54,4 +54,26 @@ class PersonEditionTest < ActiveSupport::TestCase
     assert_equal person.node, new_person.node
   end
   
+  context "generating paths" do
+
+    should "creates /* paths for untagged people" do
+      artefact = FactoryGirl.create(:artefact)
+      n = PersonEdition.create(:title         => "Person", 
+                               :panopticon_id => artefact.id,
+                               :slug          => "testing")
+      assert_equal '/testing', n.rendering_path
+    end
+
+    should "creates /team/* paths for team members" do
+      FactoryGirl.create(:tag, :tag_id => "team", :tag_type => 'person', :title => "Team Member")
+      FactoryGirl.create(:tag, :tag_id => "technical", :tag_type => 'team', :title => "Tech Team")
+      artefact = FactoryGirl.create(:artefact, :person => ['team'], :team => ['technical'])
+      n = PersonEdition.create(:title         => "Person", 
+                               :panopticon_id => artefact.id,
+                               :slug          => "testing")
+      assert_equal '/team/testing', n.rendering_path
+    end
+
+  end
+
 end

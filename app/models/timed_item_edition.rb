@@ -22,5 +22,9 @@ class TimedItemEdition < Edition
     "www"
   end
 
-
+  def rendering_path
+    tag_to_rendering_path "consultation-response" => "consultation-responses",
+                          "procurement" => "procurement"
+  end
+  
 end

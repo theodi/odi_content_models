@@ -47,4 +47,16 @@ class CourseEditionTest < ActiveSupport::TestCase
 
   end
   
+  context "generating paths" do
+
+    should "creates /courses/* paths" do
+      artefact = FactoryGirl.create(:artefact)
+      n = CourseEdition.create(:title         => "Course", 
+                               :panopticon_id => artefact.id,
+                               :slug          => "testing")
+      assert_equal '/courses/testing', n.rendering_path
+    end
+
+  end
+
 end

@@ -35,6 +35,10 @@ class PersonEdition < Edition
   def rendering_app
     "www"
   end
-
+  
+  def rendering_path
+    tag_to_rendering_path "team" => "team"
+  end
+  
 
 end

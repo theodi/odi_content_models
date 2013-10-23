@@ -19,6 +19,9 @@ class JobEdition < Edition
   def rendering_app
     "www"
   end
-
+  
+  def rendering_path
+    "/jobs/#{slug}"
+  end
 
 end

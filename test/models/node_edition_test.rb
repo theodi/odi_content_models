@@ -97,4 +97,16 @@ class NodeEditionTest < ActiveSupport::TestCase
     assert_equal false, new_node.active
   end
 
+  context "generating paths" do
+
+    should "creates /nodes/* paths" do
+      artefact = FactoryGirl.create(:artefact)
+      n = NodeEdition.create(:title         => "Node", 
+                             :panopticon_id => artefact.id,
+                             :slug          => "testing")
+      assert_equal '/nodes/testing', n.rendering_path
+    end
+
+  end
+
 end

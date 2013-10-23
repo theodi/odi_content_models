@@ -34,5 +34,9 @@ class OrganizationEdition < Edition
     "www"
   end
 
+  def rendering_path
+    tag_to_rendering_path "start-up" => "start-ups",
+                          "member"   => "members"
+  end
 
 end

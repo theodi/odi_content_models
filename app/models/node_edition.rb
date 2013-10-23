@@ -35,6 +35,10 @@ class NodeEdition < Edition
     "www"
   end
   
+  def rendering_path
+    "/nodes/#{slug}"
+  end
+  
   def latlng
     [location[0],location[1]].join(',')
   end

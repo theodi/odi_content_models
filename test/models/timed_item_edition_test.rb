@@ -44,4 +44,34 @@ class TimedItemEditionTest < ActiveSupport::TestCase
     assert_equal item.end_date.to_s, new_item.end_date.to_s
   end
   
+  context "generating paths" do
+
+    should "creates /* paths for untagged items" do
+      artefact = FactoryGirl.create(:artefact)
+      n = TimedItemEdition.create(:title         => "Timed Item", 
+                                  :panopticon_id => artefact.id,
+                                  :slug          => "testing")
+      assert_equal '/testing', n.rendering_path
+    end
+
+    should "creates /consultation-responses/* paths for consultation responses" do
+      FactoryGirl.create(:tag, :tag_id => "consultation-response", :tag_type => 'timed_item', :title => "Consultation Response")
+      artefact = FactoryGirl.create(:artefact, :timed_item => ['consultation-response'])
+      n = TimedItemEdition.create(:title         => "Timed Item", 
+                                  :panopticon_id => artefact.id,
+                                  :slug          => "testing")
+      assert_equal '/consultation-responses/testing', n.rendering_path
+    end
+
+    should "creates /procurement/* paths for procurement calls" do
+      FactoryGirl.create(:tag, :tag_id => "procurement", :tag_type => 'timed_item', :title => "Procurement Call")
+      artefact = FactoryGirl.create(:artefact, :timed_item => ['procurement'])
+      n = TimedItemEdition.create(:title         => "Timed Item", 
+                                  :panopticon_id => artefact.id,
+                                  :slug          => "testing")
+      assert_equal '/procurement/testing', n.rendering_path
+    end
+
+  end
+
 end

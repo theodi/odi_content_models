@@ -22,4 +22,11 @@ class ArticleEdition < Edition
     "www"
   end
 
+  def rendering_path
+    tag_to_rendering_path "news"  => "news",
+                          "blog"  => "blog",
+                          "guide" => "guides",
+                          "media" => "media"
+  end
+
 end

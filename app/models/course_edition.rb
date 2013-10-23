@@ -18,4 +18,8 @@ class CourseEdition < Edition
     "www"
   end
   
+  def rendering_path
+    "/courses/#{slug}"
+  end
+  
 end

@@ -55,4 +55,16 @@ class JobEditionTest < ActiveSupport::TestCase
     assert_equal job.closing_date, new_job.closing_date
   end
   
+  context "generating paths" do
+
+    should "creates /jobs/* paths" do
+      artefact = FactoryGirl.create(:artefact)
+      n = JobEdition.create(:title         => "Job", 
+                            :panopticon_id => artefact.id,
+                            :slug          => "testing")
+      assert_equal '/jobs/testing', n.rendering_path
+    end
+
+  end
+
 end

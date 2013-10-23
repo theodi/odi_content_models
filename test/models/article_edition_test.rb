@@ -56,4 +56,52 @@ class ArticleEditionTest < ActiveSupport::TestCase
     assert_equal article.media_enquiries_telephone, new_article.media_enquiries_telephone
   end
 
+  context "generating paths" do
+
+    should "creates /* paths for untagged articles" do
+      artefact = FactoryGirl.create(:artefact)
+      n = ArticleEdition.create(:title         => "Article", 
+                                :panopticon_id => artefact.id,
+                                :slug          => "testing")
+      assert_equal '/testing', n.rendering_path
+    end
+
+    should "creates /news/* paths for news articles" do
+      FactoryGirl.create(:tag, :tag_id => "news", :tag_type => 'article', :title => "News Item")
+      artefact = FactoryGirl.create(:artefact, :article => ['news'])
+      n = ArticleEdition.create(:title         => "Article", 
+                                :panopticon_id => artefact.id,
+                                :slug          => "testing")
+      assert_equal '/news/testing', n.rendering_path
+    end
+
+    should "creates /blog/* paths for blog articles" do
+      FactoryGirl.create(:tag, :tag_id => "blog", :tag_type => 'article', :title => "Blog Item")
+      artefact = FactoryGirl.create(:artefact, :article => ['blog'])
+      n = ArticleEdition.create(:title         => "Article", 
+                                :panopticon_id => artefact.id,
+                                :slug          => "testing")
+      assert_equal '/blog/testing', n.rendering_path
+    end
+
+    should "creates /guides/* paths for guides" do
+      FactoryGirl.create(:tag, :tag_id => "guide", :tag_type => 'article', :title => "Guide")
+      artefact = FactoryGirl.create(:artefact, :article => ['guide'])
+      n = ArticleEdition.create(:title         => "Article", 
+                                :panopticon_id => artefact.id,
+                                :slug          => "testing")
+      assert_equal '/guides/testing', n.rendering_path
+    end
+
+    should "creates /media/* paths for media releases" do
+      FactoryGirl.create(:tag, :tag_id => "media", :tag_type => 'article', :title => "Media Release")
+      artefact = FactoryGirl.create(:artefact, :article => ['media'])
+      n = ArticleEdition.create(:title         => "Article", 
+                                :panopticon_id => artefact.id,
+                                :slug          => "testing")
+      assert_equal '/media/testing', n.rendering_path
+    end
+
+  end
+
 end

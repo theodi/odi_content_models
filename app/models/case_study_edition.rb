@@ -20,4 +20,8 @@ class CaseStudyEdition < Edition
     "www"
   end
 
+  def rendering_path
+    "/case-studies/#{slug}"
+  end
+
 end
