@@ -22,5 +22,11 @@ class TimedItemEdition < Edition
     "www"
   end
 
-
+  def rendering_path
+    url_map = {
+      "consultation-response" => "consultation-responses",
+    }
+    section = artefact.tags.map{|x| url_map[x.tag_id]}.compact.join
+    "#{'/' unless section.blank?}#{section}/#{slug}"
+  end
 end

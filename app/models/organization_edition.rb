@@ -34,5 +34,13 @@ class OrganizationEdition < Edition
     "www"
   end
 
+  def rendering_path
+    url_map = {
+      "start-up" => "start-ups",
+      "member"   => "members",
+    }
+    section = artefact.tags.map{|x| url_map[x.tag_id]}.compact.join
+    "#{'/' unless section.blank?}#{section}/#{slug}"
+  end
 
 end
