@@ -49,12 +49,12 @@ class CourseEditionTest < ActiveSupport::TestCase
   
   context "generating paths" do
 
-    should "creates /case-studies/* paths" do
+    should "creates /courses/* paths" do
       artefact = FactoryGirl.create(:artefact)
-      n = CaseStudyEdition.create(:title         => "Case Study", 
-                                  :panopticon_id => artefact.id,
-                                  :slug          => "testing")
-      assert_equal '/case-studies/testing', n.rendering_path
+      n = CourseEdition.create(:title         => "Course", 
+                               :panopticon_id => artefact.id,
+                               :slug          => "testing")
+      assert_equal '/courses/testing', n.rendering_path
     end
 
   end

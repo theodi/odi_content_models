@@ -41,4 +41,18 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
 
   end
   
+  context "generating paths" do
+
+    should "creates /courses/{name}/{date} paths" do
+      artefact = FactoryGirl.create(:artefact)
+      n = CourseInstanceEdition.create(:title         => "Course Instance", 
+                                       :panopticon_id => artefact.id,
+                                       :slug          => "testing",
+                                       :course        => 'course-name',
+                                       :date          => Date.new(2012,11,15))
+      assert_equal '/courses/course-name/2012-11-15', n.rendering_path
+    end
+
+  end
+
 end
