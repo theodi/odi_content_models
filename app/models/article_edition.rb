@@ -25,7 +25,8 @@ class ArticleEdition < Edition
   def rendering_path
     tag_to_rendering_path "news"  => "news",
                           "blog"  => "blog",
-                          "guide" => "guides"
+                          "guide" => "guides",
+                          "media" => "media"
   end
 
 end

@@ -63,6 +63,15 @@ class TimedItemEditionTest < ActiveSupport::TestCase
       assert_equal '/consultation-responses/testing', n.rendering_path
     end
 
+    should "creates /procurement/* paths for procurement calls" do
+      FactoryGirl.create(:tag, :tag_id => "procurement", :tag_type => 'timed_item', :title => "Procurement Call")
+      artefact = FactoryGirl.create(:artefact, :timed_item => ['procurement'])
+      n = TimedItemEdition.create(:title         => "Timed Item", 
+                                  :panopticon_id => artefact.id,
+                                  :slug          => "testing")
+      assert_equal '/procurement/testing', n.rendering_path
+    end
+
   end
 
 end

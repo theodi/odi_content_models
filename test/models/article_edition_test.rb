@@ -93,6 +93,15 @@ class ArticleEditionTest < ActiveSupport::TestCase
       assert_equal '/guides/testing', n.rendering_path
     end
 
+    should "creates /media/* paths for media releases" do
+      FactoryGirl.create(:tag, :tag_id => "media", :tag_type => 'article', :title => "Media Release")
+      artefact = FactoryGirl.create(:artefact, :article => ['media'])
+      n = ArticleEdition.create(:title         => "Article", 
+                                :panopticon_id => artefact.id,
+                                :slug          => "testing")
+      assert_equal '/media/testing', n.rendering_path
+    end
+
   end
 
 end
