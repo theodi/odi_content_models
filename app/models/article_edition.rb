@@ -23,13 +23,9 @@ class ArticleEdition < Edition
   end
 
   def rendering_path
-    url_map = {
-      "news"  => "news",
-      "blog"  => "blog",
-      "guide" => "guides",
-    }
-    section = artefact.tags.map{|x| url_map[x.tag_id]}.compact.join
-    "#{'/' unless section.blank?}#{section}/#{slug}"
+    tag_to_rendering_path "news"  => "news",
+                          "blog"  => "blog",
+                          "guide" => "guides"
   end
 
 end
