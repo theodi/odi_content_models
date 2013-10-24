@@ -65,4 +65,25 @@ class EventEditionTest < ActiveSupport::TestCase
     assert_equal event.hashtag, new_event.hashtag
   end
 
+  context "generating paths" do
+
+    should "creates /events/* paths for untagged items" do
+      artefact = FactoryGirl.create(:artefact)
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/events/testing', n.rendering_path
+    end
+
+    should "creates /lunchtime-lectures/* paths for lectures" do
+      FactoryGirl.create(:tag, :tag_id => "lunchtime-lecture", :tag_type => 'event', :title => "Lunchtime Lecture")
+      artefact = FactoryGirl.create(:artefact, :event => ['lunchtime-lecture'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/lunchtime-lectures/testing', n.rendering_path
+    end
+
+  end
+
 end

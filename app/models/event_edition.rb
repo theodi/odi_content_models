@@ -24,4 +24,9 @@ class EventEdition < Edition
     "www"
   end
 
+  def rendering_path
+    path = tag_to_rendering_path "lunchtime-lecture" => "lunchtime-lectures",
+                                 :default => 'events'
+  end
+
 end
