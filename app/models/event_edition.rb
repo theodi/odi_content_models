@@ -25,8 +25,15 @@ class EventEdition < Edition
   end
 
   def rendering_path
-    path = tag_to_rendering_path "lunchtime-lecture" => "lunchtime-lectures",
-                                 :default => 'events'
+    tag_to_rendering_path  "lunchtime-lecture"          => "lunchtime-lectures",
+                           "meetup"                     => "meetups",
+                           "research-afternoon"         => "research-afternoons",
+                           "open-data-challenge-series" => "challenge-series",
+                           "roundtable"                 => "roundtables",
+                           "workshop"                   => "workshops",
+                           "networking-event"           => "networking-events",
+                           "panel-discussion"           => "panel-discussions",
+                           :default => 'events'
   end
 
 end

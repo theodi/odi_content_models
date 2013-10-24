@@ -84,6 +84,69 @@ class EventEditionTest < ActiveSupport::TestCase
       assert_equal '/lunchtime-lectures/testing', n.rendering_path
     end
 
+    should "creates /meetups/* paths for meetups" do
+      FactoryGirl.create(:tag, :tag_id => "meetup", :tag_type => 'event', :title => "Meetup")
+      artefact = FactoryGirl.create(:artefact, :event => ['meetup'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/meetups/testing', n.rendering_path
+    end
+
+    should "creates /research-afternoons/* paths for research afternoons" do
+      FactoryGirl.create(:tag, :tag_id => "research-afternoon", :tag_type => 'event', :title => "Research Afternoon")
+      artefact = FactoryGirl.create(:artefact, :event => ['research-afternoon'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/research-afternoons/testing', n.rendering_path
+    end
+  
+    should "creates /challenge-series/* paths for open data challenge events" do
+      FactoryGirl.create(:tag, :tag_id => "open-data-challenge-series", :tag_type => 'event', :title => "Open Data Challenge Series")
+      artefact = FactoryGirl.create(:artefact, :event => ['open-data-challenge-series'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/challenge-series/testing', n.rendering_path
+    end
+
+    should "creates /roundtables/* paths for roundtables" do
+      FactoryGirl.create(:tag, :tag_id => "roundtable", :tag_type => 'event', :title => "Roundtable")
+      artefact = FactoryGirl.create(:artefact, :event => ['roundtable'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/roundtables/testing', n.rendering_path
+    end
+
+    should "creates /workshops/* paths for workshops" do
+      FactoryGirl.create(:tag, :tag_id => "workshop", :tag_type => 'event', :title => "Workshop")
+      artefact = FactoryGirl.create(:artefact, :event => ['workshop'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/workshops/testing', n.rendering_path
+    end
+
+    should "creates /networking-events/* paths for networking events" do
+      FactoryGirl.create(:tag, :tag_id => "networking-event", :tag_type => 'event', :title => "Networking Event")
+      artefact = FactoryGirl.create(:artefact, :event => ['networking-event'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/networking-events/testing', n.rendering_path
+    end
+
+    should "creates /panel-discussions/* paths for panel discussions" do
+      FactoryGirl.create(:tag, :tag_id => "panel-discussion", :tag_type => 'event', :title => "Panel Discussion")
+      artefact = FactoryGirl.create(:artefact, :event => ['panel-discussion'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/panel-discussions/testing', n.rendering_path
+    end
+
   end
 
 end
