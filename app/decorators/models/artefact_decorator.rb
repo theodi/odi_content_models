@@ -29,7 +29,7 @@ class Artefact
   validate :check_team
   
   def self.category_tags
-    [:person, :timed_item, :asset, :article, :organization]
+    [:person, :timed_item, :asset, :article, :organization, :event]
   end
   
   stores_tags_for :sections, :writing_teams, :propositions,
