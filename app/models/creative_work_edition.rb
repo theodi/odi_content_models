@@ -25,4 +25,8 @@ class CreativeWorkEdition < Edition
     "www"
   end
 
+  def rendering_path
+    "/culture/#{slug}"
+  end
+
 end
