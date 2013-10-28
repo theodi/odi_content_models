@@ -5,7 +5,7 @@ class NodeEdition < Edition
   include AttachableWithMetadata
 
   # name from artefact
-  field :level,         type: Integer
+  field :level,         type: String
   field :host,          type: String
   field :region,        type: String # ISO country code
   field :area,          type: String
