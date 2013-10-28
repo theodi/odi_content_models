@@ -4,10 +4,12 @@ class NodeEditionTest < ActiveSupport::TestCase
   setup do
     @artefact = FactoryGirl.create(:artefact)
     @level = "country"
+    @beta = true
     @region = "GB"
     @host = "Some guys"
     @area = "Birmingham"
     @location = [52.323434, -1.432443]
+    @join_date = Date.new(2013,10,1)
     @url = "http://www.example.com"
     @description = "Some long description here, blah, blah, blah"
     @telephone = "0121 1234 567"
@@ -20,10 +22,12 @@ class NodeEditionTest < ActiveSupport::TestCase
     n = NodeEdition.create(title: "Node Edition", panopticon_id: @artefact.id)
     
     n.level = @level
+    n.beta = @beta
     n.host = @host
     n.region = @region
     n.area = @area
     n.location = @location
+    n.join_date = @join_date
     n.url = @url
     n.description = @description
     n.telephone = @telephone
@@ -36,10 +40,12 @@ class NodeEditionTest < ActiveSupport::TestCase
     n = NodeEdition.first
 
     assert_equal @level, n.level
+    assert_equal @beta, n.beta
     assert_equal @region, n.region
     assert_equal @host, n.host
     assert_equal @area, n.area
     assert_equal @location, n.location
+    assert_equal @join_date, n.join_date
     assert_equal @url, n.url
     assert_equal @description, n.description
     assert_equal @telephone, n.telephone
@@ -69,9 +75,11 @@ class NodeEditionTest < ActiveSupport::TestCase
                           :panopticon_id => @artefact.id,
                           :host => @host,
                           :level => @level,
+                          :beta => @beta,
                           :region => @region,
                           :area => @area,
                           :location => @location,
+                          :join_date => @join_date,
                           :url => @url,
                           :description => @description,
                           :telephone => @telephone,
@@ -83,10 +91,12 @@ class NodeEditionTest < ActiveSupport::TestCase
     new_node = node.build_clone
 
     assert_equal node.level, new_node.level
+    assert_equal node.beta, new_node.beta
     assert_equal node.host, new_node.host
     assert_equal node.region, new_node.region
     assert_equal node.area, new_node.area
     assert_equal node.location, new_node.location
+    assert_equal node.join_date, new_node.join_date
     assert_equal node.url, new_node.url
     assert_equal node.description, new_node.description
     assert_equal node.telephone, new_node.telephone

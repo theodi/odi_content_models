@@ -5,26 +5,29 @@ class NodeEdition < Edition
   include AttachableWithMetadata
 
   # name from artefact
-  field :level,         type: String
-  field :host,          type: String
-  field :region,        type: String # ISO country code
-  field :area,          type: String
-  attaches_with_metadata :hero_image
-  field :location,      type: Array, spacial: true, default: [0,0]
-  field :description,   type: String
-  field :url,           type: String
+  field :level,             type: String
+  field :beta,              type: Boolean
+  field :host,              type: String
+  field :region,            type: String # ISO country code
+  field :area,              type: String
+  field :location,          type: Array, spacial: true, default: [0,0]
+  field :join_date,         type: Date
+  field :description,       type: String
+  field :url,               type: String
   # people are defined using PersonEdition#node
-  field :telephone,     type: String
-  field :email,         type: String
-  field :twitter,       type: String
-  field :linkedin,      type: String
-  field :active,        type: Boolean, default: true
+  field :telephone,         type: String
+  field :email,             type: String
+  field :twitter,           type: String
+  field :linkedin,          type: String
+  field :active,            type: Boolean, default: true
+
+  attaches_with_metadata :logo
   
   
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
   @fields_to_clone = [
-    :level, :region, :area, :location, :description, :telephone, :email, :twitter, :linkedin, :host, :url, :active
+    :level, :beta, :region, :area, :location, :join_date, :description, :telephone, :email, :twitter, :linkedin, :host, :url, :active
   ]
 
   def whole_body
