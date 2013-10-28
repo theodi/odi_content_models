@@ -3,7 +3,7 @@ require "test_helper"
 class NodeEditionTest < ActiveSupport::TestCase
   setup do
     @artefact = FactoryGirl.create(:artefact)
-    @level = 1
+    @level = "country"
     @region = "GB"
     @host = "Some guys"
     @area = "Birmingham"
