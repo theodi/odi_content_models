@@ -1,15 +1,15 @@
-ATTACHMENT_METADATA_FIELDS = [
-  :title,
-  :source,
-  :description,
-  :creator,
-  :attribution,
-  :subject,
-  :license,
-  :spatial,
-]
-
 module AttachableWithMetadata 
+  
+  ATTACHMENT_METADATA_FIELDS = [
+    :title,
+    :source,
+    :description,
+    :creator,
+    :attribution,
+    :subject,
+    :license,
+    :spatial,
+  ]
 
   module ClassMethods
     
