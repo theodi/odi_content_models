@@ -23,12 +23,15 @@ module AttachableWithMetadata
 
         before_save :"update_#{attachment_field}_metadata", 
                     :if => :"#{attachment_field}_metadata_has_changed?"
+        
+        @fields_to_clone ||= []
+        @fields_to_clone << "#{attachment_field}_id"
 
         ATTACHMENT_METADATA_FIELDS.each do |metadata_field|
           
           # Work out the field name. For instance, 'image_description'
           field_name = "#{attachment_field}_#{metadata_field}"
-          
+                    
           # Field 'get'
           # Loads from asset manager API if not set
           define_method(field_name) do
