@@ -41,7 +41,7 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
     @edition.state = "published"
     @edition.save!
     clone = @edition.build_clone
-    assert_equal "324234324", @edition.image_id 
+    assert_equal "324234324", clone.image_id 
   end
 
   context "uploading changes" do
