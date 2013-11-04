@@ -2,7 +2,7 @@
 require "active_model"
 require "mongoid"
 
-%w[ app/models app/validators app/repositories app/traits lib ].each do |path|
+%w[ app/models app/validators app/repositories app/traits app/decorators/models lib ].each do |path|
   full_path = File.expand_path(
     "#{File.dirname(__FILE__)}/../../#{path}", __FILE__)
   $LOAD_PATH.unshift full_path unless $LOAD_PATH.include?(full_path)
