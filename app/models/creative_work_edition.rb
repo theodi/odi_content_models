@@ -12,7 +12,7 @@ class CreativeWorkEdition < Edition
   
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  @fields_to_clone = [:date_published, :description, :artist]
+  clone_fields :date_published, :description, :artist
 
   attaches :thumbnail
   attaches_with_metadata :file
@@ -23,6 +23,10 @@ class CreativeWorkEdition < Edition
 
   def rendering_app
     "www"
+  end
+
+  def rendering_path
+    "/culture/#{slug}"
   end
 
 end

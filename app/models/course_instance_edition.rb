@@ -14,7 +14,7 @@ class CourseInstanceEdition < Edition
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
   
-  @fields_to_clone = [:course, :date, :location, :price, :description, :trainers, :url]
+  clone_fields :course, :date, :location, :price, :description, :trainers, :url
 
   def whole_body
     description

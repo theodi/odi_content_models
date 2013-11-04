@@ -23,10 +23,8 @@ class PersonEdition < Edition
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  @fields_to_clone = [
-    :honorific_prefix, :honorific_suffix, :affiliation, :role, :description, :url, 
-    :telephone, :email, :twitter, :linkedin, :github, :node
-  ]
+  clone_fields :honorific_prefix, :honorific_suffix, :affiliation, :role, :description, :url,  
+               :telephone, :email, :twitter, :linkedin, :github, :node
   
   def whole_body
     description

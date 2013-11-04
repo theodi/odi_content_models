@@ -7,7 +7,7 @@ class FaqEdition < Edition
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:content]
 
-  @fields_to_clone = [:content]
+  clone_fields :content
 
   def whole_body
     content

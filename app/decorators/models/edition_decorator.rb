@@ -3,6 +3,11 @@ class Edition
   def rendering_path
     "/#{slug}"
   end
+  
+  def self.clone_fields(*fields)
+    @fields_to_clone ||= []
+    @fields_to_clone += fields
+  end
 
   private
   

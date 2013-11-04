@@ -4,16 +4,17 @@ class MockAssetApi
   class MockError < StandardError; end
 end
 
-class ModelWithAttachments
+class ModelWithAttachments < Edition
   include AttachableWithMetadata
   include Mongoid::Document
-
+      
   attaches_with_metadata :image
 end
 
 class AttachableWithMetadataTest < ActiveSupport::TestCase
   setup do
-    @edition = ModelWithAttachments.new
+    @artefact = FactoryGirl.create(:artefact)
+    @edition = ModelWithAttachments.create(title: "Model with attachments", panopticon_id: @artefact.id)
     Attachable.asset_api_client = MockAssetApi.new
   end
   
@@ -34,10 +35,18 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
     @edition.image_creator = "Bob Fish"
     assert_equal true, @edition.image_metadata_has_changed?
   end
+  
+  should "clone attachment when cloning edition" do
+    @edition.image_id = "324234324"
+    @edition.state = "published"
+    @edition.save!
+    clone = @edition.build_clone
+    assert_equal "324234324", clone.image_id 
+  end
 
   context "uploading changes" do
 
-    should "should upload metadata changes when saving" do
+    should "upload metadata changes when saving" do
       @edition.expects(:image).returns('id' => 'http://whatever/assets/123')
       MockAssetApi.any_instance.expects(:update_asset).with('123', { 
         :title       => nil,
@@ -54,6 +63,14 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
       @edition.save!
       # Now it's clean
       assert_equal false, @edition.image_metadata_has_changed?
+    end
+    
+    should "not return an error when saving without an image" do
+      MockAssetApi.any_instance.expects(:update_asset).never
+      MockAssetApi.any_instance.expects(:create_asset).never
+      @edition.image = nil
+      @edition.save!
+      assert_equal true, @edition.valid?
     end
 
     should "create new assets if changed" do

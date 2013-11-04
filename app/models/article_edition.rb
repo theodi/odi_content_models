@@ -12,7 +12,7 @@ class ArticleEdition < Edition
   
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:content]
 
-  @fields_to_clone = [:content, :url, :media_enquiries_name, :media_enquiries_email, :media_enquiries_telephone]
+  clone_fields :content, :url, :media_enquiries_name, :media_enquiries_email, :media_enquiries_telephone
 
   def whole_body
     content

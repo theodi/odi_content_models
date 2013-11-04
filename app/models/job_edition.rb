@@ -10,7 +10,7 @@ class JobEdition < Edition
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  @fields_to_clone = [:location, :salary, :description, :closing_date]
+  clone_fields :location, :salary, :description, :closing_date
 
   def whole_body
     description
