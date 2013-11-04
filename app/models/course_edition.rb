@@ -8,7 +8,7 @@ class CourseEdition < Edition
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
   
-  @fields_to_clone = [:length, :description]
+  clone_fields :length, :description
 
   def whole_body
     description

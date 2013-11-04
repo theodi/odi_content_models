@@ -4,16 +4,17 @@ class MockAssetApi
   class MockError < StandardError; end
 end
 
-class ModelWithAttachments
+class ModelWithAttachments < Edition
   include AttachableWithMetadata
   include Mongoid::Document
-
+      
   attaches_with_metadata :image
 end
 
 class AttachableWithMetadataTest < ActiveSupport::TestCase
   setup do
-    @edition = ModelWithAttachments.new
+    @artefact = FactoryGirl.create(:artefact)
+    @edition = ModelWithAttachments.create(title: "Model with attachments", panopticon_id: @artefact.id)
     Attachable.asset_api_client = MockAssetApi.new
   end
   
@@ -33,6 +34,14 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
     assert_equal false, @edition.image_metadata_has_changed?
     @edition.image_creator = "Bob Fish"
     assert_equal true, @edition.image_metadata_has_changed?
+  end
+  
+  should "clone attachment when cloning edition" do
+    @edition.image_id = "324234324"
+    @edition.state = "published"
+    @edition.save!
+    clone = @edition.build_clone
+    assert_equal "324234324", clone.image_id 
   end
 
   context "uploading changes" do
