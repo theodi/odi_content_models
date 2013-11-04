@@ -101,13 +101,17 @@ module AttachableWithMetadata
         define_method("update_#{attachment_field}_metadata") do
           raise ApiClientNotPresent unless Attachable.asset_api_client
           begin
-            # Get the asset ID. Is in URL form, so we need to split it
-            asset_id = send(attachment_field)['id'].split('/').last
-            # Update data in asset manager API.
-            response = Attachable.asset_api_client.update_asset(asset_id,
-                         send(:"#{attachment_field}_metadata_hash"))
-            # Clear metadata tracking flag
-            instance_variable_set("@#{attachment_field}_metadata_has_changed", false)
+            # Check if there is an image first
+            field = send(attachment_field)
+            unless field.nil?
+              # Get the asset ID. Is in URL form, so we need to split it
+              asset_id = field['id'].split('/').last
+              # Update data in asset manager API.
+              response = Attachable.asset_api_client.update_asset(asset_id,
+                           send(:"#{attachment_field}_metadata_hash"))
+              # Clear metadata tracking flag
+              instance_variable_set("@#{attachment_field}_metadata_has_changed", false)
+            end
             # Explicit nil return so we don't return false form line above
             nil
           rescue StandardError
@@ -121,14 +125,17 @@ module AttachableWithMetadata
         define_method("upload_#{attachment_field}") do
           raise ApiClientNotPresent unless Attachable.asset_api_client
           begin
-            # Build data hash, with file object and metadata all together
-            data = {:file => instance_variable_get("@#{attachment_field}_file")}
-            data.merge!(send(:"#{attachment_field}_metadata_hash")) if send(:"#{attachment_field}_metadata_has_changed?")
-            # Create asset in asset manager API
-            response = Attachable.asset_api_client.create_asset(data)
-            self.send("#{attachment_field}_id=", response.id.match(/\/([^\/]+)\z/) {|m| m[1] })
-            # Clear metadata tracking flag
-            instance_variable_set("@#{attachment_field}_metadata_has_changed", false)
+            file = instance_variable_get("@#{attachment_field}_file")
+            unless file.nil?
+              # Build data hash, with file object and metadata all together
+              data = {:file => file}
+              data.merge!(send(:"#{attachment_field}_metadata_hash")) if send(:"#{attachment_field}_metadata_has_changed?")
+              # Create asset in asset manager API
+              response = Attachable.asset_api_client.create_asset(data)
+              self.send("#{attachment_field}_id=", response.id.match(/\/([^\/]+)\z/) {|m| m[1] })
+              # Clear metadata tracking flag
+              instance_variable_set("@#{attachment_field}_metadata_has_changed", false)
+            end
             # Explicit nil return so we don't return false form line above
             nil
           rescue StandardError

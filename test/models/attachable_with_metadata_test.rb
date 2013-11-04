@@ -37,7 +37,7 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
 
   context "uploading changes" do
 
-    should "should upload metadata changes when saving" do
+    should "upload metadata changes when saving" do
       @edition.expects(:image).returns('id' => 'http://whatever/assets/123')
       MockAssetApi.any_instance.expects(:update_asset).with('123', { 
         :title       => nil,
@@ -54,6 +54,14 @@ class AttachableWithMetadataTest < ActiveSupport::TestCase
       @edition.save!
       # Now it's clean
       assert_equal false, @edition.image_metadata_has_changed?
+    end
+    
+    should "not return an error when saving without an image" do
+      MockAssetApi.any_instance.expects(:update_asset).never
+      MockAssetApi.any_instance.expects(:create_asset).never
+      @edition.image = nil
+      @edition.save!
+      assert_equal true, @edition.valid?
     end
 
     should "create new assets if changed" do
