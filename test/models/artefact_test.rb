@@ -13,5 +13,22 @@ class ArtefactTest < ActiveSupport::TestCase
       assert_equal false, artefact.valid?
     end
   end
-    
+   
+  should "delegate rendering path to edition if possible" do
+    FactoryGirl.create(:tag, :tag_id => "team", :tag_type => 'person', :title => "Team Member")
+    FactoryGirl.create(:tag, :tag_id => "technical", :tag_type => 'team', :title => "Tech Team")
+    artefact = FactoryGirl.create(:artefact, :person => ['team'], :team => ['technical'])
+    n = PersonEdition.create(:title         => "Person", 
+                             :panopticon_id => artefact.id,
+                             :slug          => "testing")
+    assert_equal '/team/testing', artefact.rendering_path                            
+    assert_equal 'www', artefact.rendering_app
+  end
+   
+  should "generate default rendering path if no editions available" do
+    artefact = FactoryGirl.create(:artefact, slug: "batman", rendering_app: "gotham")
+    assert_equal '/batman', artefact.rendering_path                            
+    assert_equal 'gotham', artefact.rendering_app
+  end
+
 end

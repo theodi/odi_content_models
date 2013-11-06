@@ -34,6 +34,21 @@ class Artefact
   stores_tags_for :sections, :writing_teams, :propositions,
                   :keywords, :legacy_sources, :team, category_tags
   
+  def editions
+    Edition.where(panopticon_id: self.id)
+  end
+  
+  def rendering_path(edition = nil)
+    e = edition || editions.last
+    e.respond_to?(:rendering_path) ? e.rendering_path : "/#{slug}"
+  end
+
+  def rendering_app_with_edition(edition = nil)
+    e = edition || editions.last
+    e.respond_to?(:rendering_app) ? e.rendering_app : rendering_app_without_edition
+  end
+  alias_method_chain :rendering_app, :edition
+
   private
   
   def check_tags
