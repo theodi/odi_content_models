@@ -7,6 +7,11 @@ class ArtefactTest < ActiveSupport::TestCase
     assert a.valid?
   end
   
+  should "allow a node to be assigned" do
+    a = FactoryGirl.build(:artefact, slug: "its-a-nice-day", node: "llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch")
+    assert a.valid?
+  end
+  
   should "return an error if no tag is set for special types" do
     [:person, :timed_item, :asset, :article, :organization].each do |type|
       artefact = FactoryGirl.build(:artefact, kind: type)
