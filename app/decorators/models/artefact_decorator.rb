@@ -24,6 +24,7 @@ Artefact::FORMATS = Artefact::FORMATS_BY_DEFAULT_OWNING_APP.values.flatten + gov
 class Artefact
   field "author", type: String
   field "node", type: String
+  field "organization_name", type: String
   
   validate :check_tags
   validate :check_team
