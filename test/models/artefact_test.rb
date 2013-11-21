@@ -7,13 +7,13 @@ class ArtefactTest < ActiveSupport::TestCase
     assert a.valid?
   end
   
-  should "allow a node to be assigned" do
-    a = FactoryGirl.build(:artefact, slug: "its-a-nice-day", node: "llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch")
+  should "allows nodes to be assigned" do
+    a = FactoryGirl.build(:artefact, slug: "its-a-nice-day", node: ["llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch", "westward-ho"])
     assert a.valid?
   end
   
-  should "allow an organization to be assigned" do
-    a = FactoryGirl.build(:artefact, slug: "its-a-nice-day", organization_name: "wayne-enterprises")
+  should "allows organizations to be assigned" do
+    a = FactoryGirl.build(:artefact, slug: "its-a-nice-day", organization_name: ["wayne-enterprises", "arkham-asylum"])
     assert a.valid?
   end
   
