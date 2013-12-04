@@ -33,7 +33,7 @@ class Artefact
     [:person, :timed_item, :asset, :article, :organization, :event]
   end
   
-  stores_tags_for :sections, :writing_teams, :propositions,
+  stores_tags_for :sections, :writing_teams, :propositions, :roles,
                   :keywords, :legacy_sources, :team, category_tags
   
   def editions
