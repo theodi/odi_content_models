@@ -19,8 +19,18 @@ class ArtefactTest < ActiveSupport::TestCase
   
   should "return an error if no tag is set for special types" do
     [:person, :timed_item, :asset, :article, :organization].each do |type|
-      artefact = FactoryGirl.build(:artefact, kind: type)
-      assert_equal false, artefact.valid?
+      assert_raise Mongoid::Errors::Validations do 
+        artefact = FactoryGirl.create(:artefact, kind: type)
+      end
+    end
+  end
+  
+  should "return an error if no tag is set for special types with a role" do
+    FactoryGirl.create(:tag, :tag_id => "odi", :tag_type => 'role', :title => "ODI")
+    [:person, :timed_item, :asset, :article, :organization].each do |type|
+      assert_raise Mongoid::Errors::Validations do 
+        artefact = FactoryGirl.create(:artefact, kind: type, roles: ['odi'])
+      end
     end
   end
    
