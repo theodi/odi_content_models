@@ -55,7 +55,7 @@ class Artefact
   
   def check_tags
     if self.class.category_tags.include? self.kind.to_sym
-      errors.add(self.kind.to_sym, "tag must be specified") if self.tag_ids.empty?
+      errors.add(self.kind.to_sym, "tag must be specified") if self.send(kind.to_sym).empty?
     end
   end
   
