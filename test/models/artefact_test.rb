@@ -46,6 +46,20 @@ class ArtefactTest < ActiveSupport::TestCase
     artefact = Artefact.where(:slug => "batman", :tag_ids => "odi").first
     assert_equal "Batman", artefact.name
   end
+  
+  should "apply the role correctly for special types with a role" do
+    FactoryGirl.create(:tag, :tag_id => "odi", :tag_type => 'role', :title => "ODI")
+    FactoryGirl.create(:tag, :tag_id => "foo", :tag_type => 'role', :title => "Foo")
+    FactoryGirl.create(:tag, :tag_id => "team", :tag_type => 'person', :title => "team")
+    FactoryGirl.create(:tag, :tag_id => "procurement", :tag_type => 'timed_item', :title => "procurement")
+    FactoryGirl.create(:tag, :tag_id => "thing", :tag_type => 'asset', :title => "thing")
+    FactoryGirl.create(:tag, :tag_id => "page", :tag_type => 'article', :title => "page")
+    FactoryGirl.create(:tag, :tag_id => "member", :tag_type => 'organization', :title => "member")
+    {:timed_item => 'procurement', :article => 'page', :organization => 'member'}.each do |kind, tag|
+      artefact = FactoryGirl.create(:artefact, :kind => kind, :roles => ['foo'], kind => [tag])
+      assert_equal "Foo", artefact.roles.first.title
+    end
+  end
    
   should "delegate rendering path to edition if possible" do
     FactoryGirl.create(:tag, :tag_id => "team", :tag_type => 'person', :title => "Team Member")
