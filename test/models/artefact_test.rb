@@ -33,6 +33,19 @@ class ArtefactTest < ActiveSupport::TestCase
       end
     end
   end
+  
+  should "apply the role correctly if no editions available" do
+    FactoryGirl.create(:tag, :tag_id => "odi", :tag_type => 'role', :title => "ODI")
+    artefact = FactoryGirl.create(:artefact, slug: "batman", rendering_app: "gotham", roles: ["odi"])
+    assert_equal "ODI", artefact.roles.first.title
+  end
+  
+  should "allow querying by role" do
+    FactoryGirl.create(:tag, :tag_id => "odi", :tag_type => 'role', :title => "ODI")
+    FactoryGirl.create(:artefact, name: "Batman", slug: "batman", rendering_app: "gotham", roles: ["odi"])
+    artefact = Artefact.where(:slug => "batman", :tag_ids => "odi").first
+    assert_equal "Batman", artefact.name
+  end
    
   should "delegate rendering path to edition if possible" do
     FactoryGirl.create(:tag, :tag_id => "team", :tag_type => 'person', :title => "Team Member")
