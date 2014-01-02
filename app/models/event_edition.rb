@@ -9,11 +9,12 @@ class EventEdition < Edition
   field :booking_url, type: String
   # map "image" is generated from location
   field :hashtag,     type: String
+  field :livestream,  type: Boolean
   
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
   @fields_to_clone = [  
-    :start_date, :end_date, :location, :description, :booking_url, :hashtag
+    :start_date, :end_date, :location, :description, :booking_url, :hashtag, :livestream
   ]
 
   def whole_body
