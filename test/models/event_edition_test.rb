@@ -13,6 +13,7 @@ class EventEditionTest < ActiveSupport::TestCase
     n.description = "description"
     n.booking_url = "http://eventbrite.com/test"
     n.hashtag = "testing"
+    n.livestream = true
     
     n.safely.save!
 
@@ -23,6 +24,7 @@ class EventEditionTest < ActiveSupport::TestCase
     assert_equal n.description, "description"
     assert_equal n.booking_url, "http://eventbrite.com/test"
     assert_equal n.hashtag, "testing"
+    assert_equal n.livestream, true
   end
   
   should "give a friendly (legacy supporting) description of its format" do
@@ -39,7 +41,8 @@ class EventEditionTest < ActiveSupport::TestCase
                             :location => "Shoreditch",
                             :description => "description",
                             :booking_url => "http://eventbrite.com/test",
-                            :hashtag => "testing")
+                            :hashtag => "testing",
+                            :livestream => true)
       expected = "description"
       assert_equal expected, n.whole_body
     end
@@ -54,7 +57,8 @@ class EventEditionTest < ActiveSupport::TestCase
                           :description => "description",
                           :booking_url => "http://eventbrite.com/test",
                           :hashtag => "testing",
-                          :state => "published")
+                          :state => "published",
+                          :livestream => true)
     new_event = event.build_clone
 
     assert_equal event.start_date, new_event.start_date
@@ -63,6 +67,7 @@ class EventEditionTest < ActiveSupport::TestCase
     assert_equal event.description, new_event.description
     assert_equal event.booking_url, new_event.booking_url
     assert_equal event.hashtag, new_event.hashtag
+    assert_equal event.livestream, new_event.livestream
   end
 
   context "generating paths" do
