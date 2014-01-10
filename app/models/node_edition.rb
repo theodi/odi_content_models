@@ -24,12 +24,9 @@ class NodeEdition < Edition
 
   attaches_with_metadata :logo
   
-  
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  @fields_to_clone = [
-    :level, :beta, :region, :area, :location, :join_date, :description, :statement, :telephone, :email, :twitter, :linkedin, :host, :url, :active
-  ]
+  clone_fields :level, :beta, :region, :area, :location, :join_date, :description, :statement, :telephone, :email, :twitter, :linkedin, :host, :url, :active
 
   def whole_body
     description
