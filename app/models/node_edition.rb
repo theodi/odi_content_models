@@ -13,7 +13,6 @@ class NodeEdition < Edition
   field :location,          type: Array, spacial: true, default: [0,0]
   field :join_date,         type: Date
   field :description,       type: String
-  field :statement,         type: String
   field :url,               type: String
   # people are defined using PersonEdition#node
   field :telephone,         type: String
@@ -26,7 +25,7 @@ class NodeEdition < Edition
   
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  clone_fields :level, :beta, :region, :area, :location, :join_date, :description, :statement, :telephone, :email, :twitter, :linkedin, :host, :url, :active
+  clone_fields :level, :beta, :region, :area, :location, :join_date, :description, :telephone, :email, :twitter, :linkedin, :host, :url, :active
 
   def whole_body
     description
