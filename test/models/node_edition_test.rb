@@ -12,7 +12,6 @@ class NodeEditionTest < ActiveSupport::TestCase
     @join_date = Date.new(2013,10,1)
     @url = "http://www.example.com"
     @description = "Some long description here, blah, blah, blah"
-    @statement = "Here's what we'll do"
     @telephone = "0121 1234 567"
     @email = "example@example.com"
     @twitter = "example"
@@ -31,7 +30,6 @@ class NodeEditionTest < ActiveSupport::TestCase
     n.join_date = @join_date
     n.url = @url
     n.description = @description
-    n.statement = @statement
     n.telephone = @telephone
     n.email = @email
     n.twitter = @twitter
@@ -50,7 +48,6 @@ class NodeEditionTest < ActiveSupport::TestCase
     assert_equal @join_date, n.join_date
     assert_equal @url, n.url
     assert_equal @description, n.description
-    assert_equal @statement, n.statement
     assert_equal @telephone, n.telephone
     assert_equal @email, n.email
     assert_equal @twitter, n.twitter
@@ -85,7 +82,6 @@ class NodeEditionTest < ActiveSupport::TestCase
                           :join_date => @join_date,
                           :url => @url,
                           :description => @description,
-                          :statement => @statement,
                           :telephone => @telephone,
                           :email => @email,
                           :twitter => @twitter,
@@ -103,7 +99,6 @@ class NodeEditionTest < ActiveSupport::TestCase
     assert_equal node.join_date, new_node.join_date
     assert_equal node.url, new_node.url
     assert_equal node.description, new_node.description
-    assert_equal node.statement, new_node.statement
     assert_equal node.telephone, new_node.telephone
     assert_equal node.email, new_node.email
     assert_equal node.twitter, new_node.twitter
