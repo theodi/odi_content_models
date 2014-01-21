@@ -6,7 +6,7 @@ class CourseInstanceEdition < Edition
   
   field :course,        type: String # references a course
   field :date,          type: DateTime
-  field :to_date,       type: DateTime
+  field :end_date,       type: DateTime
   field :location,      type: String
   field :price,         type: String
   field :description,   type: String
@@ -15,7 +15,7 @@ class CourseInstanceEdition < Edition
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
   
-  clone_fields :course, :date, :to_date, :location, :price, :description, :trainers, :url
+  clone_fields :course, :date, :end_date, :location, :price, :description, :trainers, :url
 
   def whole_body
     description
