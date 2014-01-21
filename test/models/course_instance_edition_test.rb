@@ -8,13 +8,13 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
   should "have correct extra fields" do
     c = CourseInstanceEdition.create(title: "Course Instance Edition", panopticon_id: @artefact.id)
     c.description = "This is an awesome course_instance"
-    c.to_date = "2013-01-01"
+    c.end_date = "2013-01-01"
 
     c.safely.save!
 
     c = CourseInstanceEdition.first
     assert_equal "This is an awesome course_instance", c.description
-    assert_equal "2013-01-01".to_date, c.to_date
+    assert_equal "2013-01-01".to_date, c.end_date
   end
   
   should "give a friendly (legacy supporting) description of its format" do
@@ -24,7 +24,7 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      c =  CourseEdition.create(:title => "Course Instance Edition",
+      c =  CourseInstanceEdition.create(:title => "Course Instance Edition",
                                 :panopticon_id => @artefact.id,
                                 :description => "This is an awesome course_instance")
       expected = "This is an awesome course_instance"
@@ -33,15 +33,15 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    course_instance = CourseEdition.create(:title => "Course Instance Edition",
+    course_instance = CourseInstanceEdition.create(:title => "Course Instance Edition",
                                           :panopticon_id => @artefact.id,
                                           :description => "This is an awesome course_instance",
-                                          :to_date => "2013-01-01",
+                                          :end_date => "2013-01-01",
                                           :state => "published")
     new_course_instance = course_instance.build_clone
 
     assert_equal course_instance.description, new_course_instance.description
-    assert_equal course_instance.to_date, new_course_instance.to_date
+    assert_equal course_instance.end_date, new_course_instance.end_date
   end
   
   context "generating paths" do
