@@ -24,7 +24,7 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
   
   context "whole_body" do
     should "contain just the description" do
-      c =  CourseEdition.create(:title => "Course Instance Edition",
+      c =  CourseInstanceEdition.create(:title => "Course Instance Edition",
                                 :panopticon_id => @artefact.id,
                                 :description => "This is an awesome course_instance")
       expected = "This is an awesome course_instance"
@@ -33,7 +33,7 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
   end
   
   should "clone extra fields when cloning edition" do
-    course_instance = CourseEdition.create(:title => "Course Instance Edition",
+    course_instance = CourseInstanceEdition.create(:title => "Course Instance Edition",
                                           :panopticon_id => @artefact.id,
                                           :description => "This is an awesome course_instance",
                                           :end_date => "2013-01-01",
