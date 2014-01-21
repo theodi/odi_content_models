@@ -36,7 +36,7 @@ class CourseInstanceEditionTest < ActiveSupport::TestCase
     course_instance = CourseEdition.create(:title => "Course Instance Edition",
                                           :panopticon_id => @artefact.id,
                                           :description => "This is an awesome course_instance",
-                                          :to_date = "2013-01-01",
+                                          :to_date => "2013-01-01",
                                           :state => "published")
     new_course_instance = course_instance.build_clone
 
