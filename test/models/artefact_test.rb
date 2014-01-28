@@ -17,6 +17,12 @@ class ArtefactTest < ActiveSupport::TestCase
     assert a.valid?
   end
   
+  should "allows featured tag to be assigned" do
+    FactoryGirl.create(:tag, :tag_id => "featured", :tag_type => 'featured', :title => "featured")
+    a = FactoryGirl.build(:artefact, slug: "its-a-nice-day", featured: ["featured"])
+    assert a.valid?
+  end
+  
   should "return an error if no tag is set for special types" do
     [:person, :timed_item, :asset, :article, :organization].each do |type|
       assert_raise Mongoid::Errors::Validations do 
