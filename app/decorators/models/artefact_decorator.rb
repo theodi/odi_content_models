@@ -9,6 +9,7 @@ Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
     "event",
     "node",
     "person",
+    "report",
     "organization",
     "article",
     "person",
