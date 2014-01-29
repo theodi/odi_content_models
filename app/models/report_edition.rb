@@ -16,6 +16,10 @@ class ReportEdition < Edition
     "www"
   end
   
+  def whole_body
+    nil
+  end
+  
   def rendering_path
     "/reports/#{slug}"
   end
