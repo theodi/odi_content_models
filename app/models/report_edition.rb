@@ -10,8 +10,7 @@ class ReportEdition < Edition
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  clone_fields :date, :report, :affiliation, :role, :description, :url,  
-               :telephone, :email, :twitter, :linkedin, :github, :node
+  clone_fields :date
 
   def rendering_app
     "www"
