@@ -17,7 +17,7 @@ class ReportEdition < Edition
   end
   
   def whole_body
-    nil
+    ""
   end
   
   def rendering_path
