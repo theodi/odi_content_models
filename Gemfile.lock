@@ -10,38 +10,24 @@ GIT
       plek
       rest-client (~> 1.6.3)
 
-GIT
-  remote: git://github.com/theodi/govuk_content_models.git
-  revision: d2c8536da24a9ef003e1eb40f5bac2074dfa478b
-  branch: feature-lambda-format-validator
-  specs:
-    govuk_content_models (5.10.0)
-      bson_ext
-      differ
-      gds-api-adapters
-      gds-sso (>= 3.0.0, < 4.0.0)
-      govspeak (>= 1.0.1, < 2.0.0)
-      mongoid (~> 2.4.10)
-      plek
-      state_machine
-
 PATH
   remote: .
   specs:
     odi_content_models (0.0.1)
-      govuk_content_models
+      govuk_content_models (= 6.0.6)
+      mongoid_spacial
 
 GEM
   remote: https://rubygems.org/
   remote: https://BnrJb6FZyzspBboNJzYZ@gem.fury.io/govuk/
   specs:
     PriorityQueue (0.1.2)
-    actionmailer (3.2.13)
-      actionpack (= 3.2.13)
-      mail (~> 2.5.3)
-    actionpack (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
+    actionmailer (3.2.17)
+      actionpack (= 3.2.17)
+      mail (~> 2.5.4)
+    actionpack (3.2.17)
+      activemodel (= 3.2.17)
+      activesupport (= 3.2.17)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
@@ -49,28 +35,28 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.13)
-      activesupport (= 3.2.13)
+    activemodel (3.2.17)
+      activesupport (= 3.2.17)
       builder (~> 3.0.0)
-    activerecord (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
+    activerecord (3.2.17)
+      activemodel (= 3.2.17)
+      activesupport (= 3.2.17)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
-    activesupport (3.2.13)
-      i18n (= 0.6.1)
+    activeresource (3.2.17)
+      activemodel (= 3.2.17)
+      activesupport (= 3.2.17)
+    activesupport (3.2.17)
+      i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.5)
     arel (3.0.3)
-    bson (1.9.1)
-    bson_ext (1.9.1)
-      bson (~> 1.9.1)
+    bson (1.9.2)
+    bson_ext (1.9.2)
+      bson (~> 1.9.2)
     builder (3.0.4)
-    crack (0.4.1)
-      safe_yaml (~> 0.9.0)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     database_cleaner (0.7.2)
     differ (0.1.2)
     erubis (2.7.0)
@@ -83,15 +69,24 @@ GEM
       rack-accept (~> 0.4.4)
       rails (>= 3.0.0)
       warden (~> 1.2)
-    govspeak (1.4.0)
+    govspeak (1.5.0)
       htmlentities (~> 4)
       kramdown (~> 0.13.3)
       sanitize (~> 2.0.3)
+    govuk_content_models (6.0.6)
+      bson_ext
+      differ
+      gds-api-adapters
+      gds-sso (>= 3.0.0, < 4.0.0)
+      govspeak (>= 1.0.1, < 2.0.0)
+      mongoid (~> 2.5)
+      plek
+      state_machine
     hashie (2.0.5)
     hike (1.2.3)
     htmlentities (4.3.1)
     httpauth (0.2.1)
-    i18n (0.6.1)
+    i18n (0.6.9)
     journey (1.0.4)
     json (1.8.1)
     jwt (0.1.6)
@@ -103,16 +98,16 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.1)
-    mime-types (1.23)
+    metaclass (0.0.4)
+    mime-types (1.25.1)
     mini_portile (0.5.2)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
-    mongo (1.3.1)
-      bson (>= 1.3.1)
-    mongoid (2.4.12)
+    mongo (1.9.2)
+      bson (~> 1.9.2)
+    mongoid (2.8.1)
       activemodel (~> 3.1)
-      mongo (<= 1.6.2)
+      mongo (~> 1.9)
       tzinfo (~> 0.3.22)
     mongoid_spacial (0.2.17)
       activesupport (~> 3.0)
@@ -136,7 +131,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    plek (1.4.0)
+    plek (1.7.0)
     polyglot (0.3.4)
     rack (1.4.5)
     rack-accept (0.4.5)
@@ -147,17 +142,17 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.13)
-      actionmailer (= 3.2.13)
-      actionpack (= 3.2.13)
-      activerecord (= 3.2.13)
-      activeresource (= 3.2.13)
-      activesupport (= 3.2.13)
+    rails (3.2.17)
+      actionmailer (= 3.2.17)
+      actionpack (= 3.2.17)
+      activerecord (= 3.2.17)
+      activeresource (= 3.2.17)
+      activesupport (= 3.2.17)
       bundler (~> 1.0)
-      railties (= 3.2.13)
-    railties (3.2.13)
-      actionpack (= 3.2.13)
-      activesupport (= 3.2.13)
+      railties (= 3.2.17)
+    railties (3.2.17)
+      actionpack (= 3.2.17)
+      activesupport (= 3.2.17)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -167,7 +162,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    safe_yaml (0.9.4)
+    safe_yaml (1.0.1)
     sanitize (2.0.6)
       nokogiri (>= 1.4.4)
     shoulda-context (1.0.0)
@@ -183,7 +178,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.8.7)
@@ -197,9 +192,8 @@ DEPENDENCIES
   database_cleaner (= 0.7.2)
   factory_girl (= 3.3.0)
   gds-api-adapters!
-  govuk_content_models!
+  mime-types (~> 1.16)
   mocha (= 0.13.3)
-  mongoid_spacial
   multi_json (= 1.3.7)
   odi_content_models!
   rack (~> 1.4.4)

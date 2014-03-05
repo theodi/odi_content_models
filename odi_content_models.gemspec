@@ -15,7 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib", "app"]
   gem.version       = OdiContentModels::VERSION
 
-  gem.add_dependency "govuk_content_models"
+  gem.add_dependency "govuk_content_models", "6.0.6"
+  gem.add_dependency "mongoid_spacial"
 
   gem.add_development_dependency "database_cleaner", "0.7.2"
   gem.add_development_dependency "factory_girl", "3.3.0"
