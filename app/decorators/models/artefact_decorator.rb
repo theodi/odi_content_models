@@ -26,21 +26,25 @@ class Artefact
   field "author", type: String
   field "node", type: Array
   field "organization_name", type: Array
-  
+
+  include Attachable
+
   validate :check_tags
   validate :check_team
-  
+
+  attaches :module_image
+
   def self.category_tags
     [:person, :timed_item, :asset, :article, :organization, :event]
   end
-  
+
   stores_tags_for :sections, :writing_teams, :propositions, :roles, :featured,
                   :keywords, :legacy_sources, :team, category_tags
-  
+
   def editions
     Edition.where(panopticon_id: self.id)
   end
-  
+
   def rendering_path(edition = nil)
     e = edition || editions.last
     e.respond_to?(:rendering_path) ? e.rendering_path : "/#{slug}"
@@ -53,13 +57,13 @@ class Artefact
   alias_method_chain :rendering_app, :edition
 
   private
-  
+
   def check_tags
     if self.class.category_tags.include? self.kind.to_sym
       errors.add(self.kind.to_sym, "tag must be specified") if self.send(kind.to_sym).empty?
     end
   end
-  
+
   def check_team
     if self.tag_ids.include? "team"
       unless self.tag_ids.any? { |t| Tag.where(:tag_type => "team").collect{ |t| t.tag_id }.include? t }
