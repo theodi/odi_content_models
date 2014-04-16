@@ -12,7 +12,6 @@ Artefact::FORMATS_BY_DEFAULT_OWNING_APP = {
     "report",
     "organization",
     "article",
-    "person",
     "timed_item",
     "faq",
     "job"
