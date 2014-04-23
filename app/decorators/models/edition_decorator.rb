@@ -9,6 +9,14 @@ class Edition
     @fields_to_clone += fields
   end
 
+  def indexable_content
+    if self.respond_to?(:whole_body)
+      "#{Govspeak::Document.new(whole_body).to_text}".strip
+    else
+      title
+    end
+  end
+
   private
   
   def tag_to_rendering_path(url_map)
