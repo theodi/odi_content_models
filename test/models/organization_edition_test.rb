@@ -4,11 +4,12 @@ class OrganizationEditionTest < ActiveSupport::TestCase
   setup do
     @artefact = FactoryGirl.create(:artefact)
   end
-  
+
   should "have correct extra fields" do
     p = OrganizationEdition.create(title: "Organization edition", panopticon_id: @artefact.id)
     p.description  = "description"
-    p.joined_at    = Date.today
+    p.joined_at    = Date.today - 1.year
+    p.graduated    = Date.today
     p.tagline      = "tagline"
     p.involvement  = "involvment"
     p.want_to_meet = "want to meet"
@@ -18,12 +19,13 @@ class OrganizationEditionTest < ActiveSupport::TestCase
     p.email        = "hello@example.com"
     p.twitter      = "example"
     p.linkedin     = "http://linkedin.com/example"
-    
+
     p.safely.save!
 
     p = OrganizationEdition.first
     assert_equal p.description,  "description"
-    assert_equal p.joined_at,  Date.today
+    assert_equal p.joined_at,  (Date.today - 1.year)
+    assert_equal p.graduated,  Date.today
     assert_equal p.tagline,  "tagline"
     assert_equal p.involvement,  "involvment"
     assert_equal p.want_to_meet,  "want to meet"
@@ -32,14 +34,14 @@ class OrganizationEditionTest < ActiveSupport::TestCase
     assert_equal p.telephone,  "1234"
     assert_equal p.email,  "hello@example.com"
     assert_equal p.twitter,  "example"
-    assert_equal p.linkedin,  "http://linkedin.com/example"    
+    assert_equal p.linkedin,  "http://linkedin.com/example"
   end
-  
+
   should "give a friendly (legacy supporting) description of its format" do
     x = OrganizationEdition.new
     assert_equal "Organization", x.format
   end
-  
+
   context "whole_body" do
     should "contain just the description" do
       p = OrganizationEdition.create(:title => "Organization edition",
@@ -49,12 +51,13 @@ class OrganizationEditionTest < ActiveSupport::TestCase
       assert_equal expected, p.whole_body
     end
   end
-  
+
   should "clone extra fields when cloning edition" do
     org = OrganizationEdition.create(:title => "Organization edition",
                           :panopticon_id => @artefact.id,
                           :description   => "description",
-                          :joined_at     => Date.today,
+                          :joined_at     => (Date.today - 1.year),
+                          :graduated     => Date.today,
                           :tagline       => "tagline",
                           :involvement   => "involvment",
                           :want_to_meet  => "want to meet",
@@ -69,6 +72,7 @@ class OrganizationEditionTest < ActiveSupport::TestCase
 
     assert_equal new_org.description, org.description
     assert_equal new_org.joined_at, org.joined_at
+    assert_equal new_org.graduated, org.graduated
     assert_equal new_org.tagline, org.tagline
     assert_equal new_org.involvement, org.involvement
     assert_equal new_org.want_to_meet, org.want_to_meet
@@ -79,12 +83,12 @@ class OrganizationEditionTest < ActiveSupport::TestCase
     assert_equal new_org.twitter, org.twitter
     assert_equal new_org.linkedin, org.linkedin
   end
-  
+
   context "generating paths" do
 
     should "creates /* paths for untagged orgs" do
       artefact = FactoryGirl.create(:artefact)
-      n = OrganizationEdition.create(:title         => "Organization", 
+      n = OrganizationEdition.create(:title         => "Organization",
                                      :panopticon_id => artefact.id,
                                      :slug          => "testing")
       assert_equal '/testing', n.rendering_path
@@ -93,7 +97,7 @@ class OrganizationEditionTest < ActiveSupport::TestCase
     should "creates /start-ups/* paths for startups" do
       FactoryGirl.create(:tag, :tag_id => "start-up", :tag_type => 'organization', :title => "Organization Type")
       artefact = FactoryGirl.create(:artefact, :organization => ['start-up'])
-      n = OrganizationEdition.create(:title         => "Organization", 
+      n = OrganizationEdition.create(:title         => "Organization",
                                      :panopticon_id => artefact.id,
                                      :slug          => "testing")
       assert_equal '/start-ups/testing', n.rendering_path
@@ -102,7 +106,7 @@ class OrganizationEditionTest < ActiveSupport::TestCase
     should "creates /members/* paths for members" do
       FactoryGirl.create(:tag, :tag_id => "member", :tag_type => 'organization', :title => "Organization Type")
       artefact = FactoryGirl.create(:artefact, :organization => ['member'])
-      n = OrganizationEdition.create(:title         => "Organization", 
+      n = OrganizationEdition.create(:title         => "Organization",
                                      :panopticon_id => artefact.id,
                                      :slug          => "testing")
       assert_equal '/members/testing', n.rendering_path
