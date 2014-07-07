@@ -25,6 +25,7 @@ class Artefact
   field "author", type: String
   field "node", type: Array
   field "organization_name", type: Array
+  field "live_at", type: DateTime, default: DateTime.now
 
   include Attachable
 
