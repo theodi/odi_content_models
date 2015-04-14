@@ -20,7 +20,7 @@ class Edition
   private
   
   def tag_to_rendering_path(url_map)
-    section = artefact.tags.map{|x| url_map[x.tag_id]}.compact.join
+    section = artefact.tags.map{|x| url_map[x.tag_id]}.compact.uniq.join
     section = url_map[:default] if section.blank? && url_map[:default]
     "#{'/' unless section.blank?}#{section}/#{slug}"
   end

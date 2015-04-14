@@ -89,6 +89,16 @@ class EventEditionTest < ActiveSupport::TestCase
       assert_equal '/lunchtime-lectures/testing', n.rendering_path
     end
 
+    should "creates /lunchtime-lectures/* paths for lectures with keyword tag as well" do
+      FactoryGirl.create(:tag, :tag_id => "lunchtime-lecture", :tag_type => 'event', :title => "Lunchtime Lecture")
+      FactoryGirl.create(:tag, :tag_id => "lunchtime-lecture", :tag_type => 'keyword', :title => "Lunchtime Lecture")
+      artefact = FactoryGirl.create(:artefact, :event => ['lunchtime-lecture'], :keywords => ['lunchtime-lecture'])
+      n = EventEdition.create(:title         => "Event", 
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/lunchtime-lectures/testing', n.rendering_path
+    end
+
     should "creates /meetups/* paths for meetups" do
       FactoryGirl.create(:tag, :tag_id => "meetup", :tag_type => 'event', :title => "Meetup")
       artefact = FactoryGirl.create(:artefact, :event => ['meetup'])
