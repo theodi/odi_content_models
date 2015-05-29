@@ -2,10 +2,10 @@ require "edition"
 require "attachable"
 
 class ReportEdition < Edition
-  include Attachable
+  include AttachableWithMetadata
 
   field    :date, type: DateTime
-  
+
   attaches :report
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
@@ -15,13 +15,13 @@ class ReportEdition < Edition
   def rendering_app
     "www"
   end
-  
+
   def whole_body
     ""
   end
-  
+
   def rendering_path
     "/reports/#{slug}"
   end
-  
+
 end
