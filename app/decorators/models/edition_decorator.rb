@@ -17,6 +17,26 @@ class Edition
     end
   end
 
+  def update_from_artefact(artefact)
+    ####################################################################
+    # Removing the update to title. This action is triggered when there
+    # is an update to the artefact in Panopticon. Agreed with @pezolio
+    # on 17 June to comment out, in case VERY BAD THINGS happen.
+    # slug is the prime linkage, but think that section, department and
+    # business_proposition are mastered in Panopticon / artefact, so
+    # should maintain them there, and ensure that existing editions are
+    # updated.
+    # The issue is here: https://github.com/theodi/publisher/issues/135
+    #
+
+    # self.title = artefact.name unless published?
+    self.slug = artefact.slug
+    self.section = artefact.section
+    self.department = artefact.department
+    self.business_proposition = artefact.business_proposition
+    self.save!
+  end
+
   private
   
   def tag_to_rendering_path(url_map)
