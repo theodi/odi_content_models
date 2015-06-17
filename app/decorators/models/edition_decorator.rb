@@ -17,14 +17,6 @@ class Edition
     end
   end
 
-  private
-  
-  def tag_to_rendering_path(url_map)
-    section = artefact.tags.map{|x| url_map[x.tag_id]}.compact.uniq.join
-    section = url_map[:default] if section.blank? && url_map[:default]
-    "#{'/' unless section.blank?}#{section}/#{slug}"
-  end
-
   def update_from_artefact(artefact)
     ####################################################################
     # Removing the update to title. This action is triggered when there
@@ -43,6 +35,14 @@ class Edition
     self.department = artefact.department
     self.business_proposition = artefact.business_proposition
     self.save!
+  end
+
+  private
+  
+  def tag_to_rendering_path(url_map)
+    section = artefact.tags.map{|x| url_map[x.tag_id]}.compact.uniq.join
+    section = url_map[:default] if section.blank? && url_map[:default]
+    "#{'/' unless section.blank?}#{section}/#{slug}"
   end
 
 end
