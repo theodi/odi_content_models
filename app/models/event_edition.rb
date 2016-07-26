@@ -10,10 +10,10 @@ class EventEdition < Edition
   # map "image" is generated from location
   field :hashtag,     type: String
   field :livestream,  type: Boolean
-  
+
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  @fields_to_clone = [  
+  @fields_to_clone = [
     :start_date, :end_date, :location, :description, :booking_url, :hashtag, :livestream
   ]
 
@@ -26,14 +26,14 @@ class EventEdition < Edition
   end
 
   def rendering_path
-    tag_to_rendering_path  "lunchtime-lecture"          => "lunchtime-lectures",
-                           "meetup"                     => "meetups",
-                           "research-afternoon"         => "research-afternoons",
-                           "open-data-challenge-series" => "challenge-series",
-                           "roundtable"                 => "roundtables",
-                           "workshop"                   => "workshops",
-                           "networking-event"           => "networking-events",
-                           "panel-discussion"           => "panel-discussions",
+    tag_to_rendering_path  "event:lunchtime-lecture"          => "lunchtime-lectures",
+                           "event:meetup"                     => "meetups",
+                           "event:research-afternoon"         => "research-afternoons",
+                           "event:open-data-challenge-series" => "challenge-series",
+                           "event:roundtable"                 => "roundtables",
+                           "event:workshop"                   => "workshops",
+                           "event:networking-event"           => "networking-events",
+                           "event:panel-discussion"           => "panel-discussions",
                            :default => 'events'
   end
 
