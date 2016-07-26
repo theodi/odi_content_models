@@ -82,7 +82,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /lunchtime-lectures/* paths for lectures" do
       FactoryGirl.create(:tag, :tag_id => "event:lunchtime-lecture", :tag_type => 'event', :title => "Lunchtime Lecture")
-      artefact = FactoryGirl.create(:artefact, :event => ['lunchtime-lecture'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:lunchtime-lecture'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -92,7 +92,7 @@ class EventEditionTest < ActiveSupport::TestCase
     should "creates /lunchtime-lectures/* paths for lectures with keyword tag as well" do
       FactoryGirl.create(:tag, :tag_id => "event:lunchtime-lecture", :tag_type => 'event', :title => "Lunchtime Lecture")
       FactoryGirl.create(:tag, :tag_id => "event:lunchtime-lecture", :tag_type => 'keyword', :title => "Lunchtime Lecture")
-      artefact = FactoryGirl.create(:artefact, :event => ['lunchtime-lecture'], :keywords => ['lunchtime-lecture'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:lunchtime-lecture'], :keywords => ['event:lunchtime-lecture'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -101,7 +101,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /meetups/* paths for meetups" do
       FactoryGirl.create(:tag, :tag_id => "event:meetup", :tag_type => 'event', :title => "Meetup")
-      artefact = FactoryGirl.create(:artefact, :event => ['meetup'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:meetup'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -110,7 +110,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /research-afternoons/* paths for research afternoons" do
       FactoryGirl.create(:tag, :tag_id => "event:research-afternoon", :tag_type => 'event', :title => "Research Afternoon")
-      artefact = FactoryGirl.create(:artefact, :event => ['research-afternoon'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:research-afternoon'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -119,7 +119,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /challenge-series/* paths for open data challenge events" do
       FactoryGirl.create(:tag, :tag_id => "event:open-data-challenge-series", :tag_type => 'event', :title => "Open Data Challenge Series")
-      artefact = FactoryGirl.create(:artefact, :event => ['open-data-challenge-series'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:open-data-challenge-series'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -128,7 +128,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /roundtables/* paths for roundtables" do
       FactoryGirl.create(:tag, :tag_id => "event:roundtable", :tag_type => 'event', :title => "Roundtable")
-      artefact = FactoryGirl.create(:artefact, :event => ['roundtable'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:roundtable'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -137,7 +137,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /workshops/* paths for workshops" do
       FactoryGirl.create(:tag, :tag_id => "event:workshop", :tag_type => 'event', :title => "Workshop")
-      artefact = FactoryGirl.create(:artefact, :event => ['workshop'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:workshop'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -146,7 +146,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /networking-events/* paths for networking events" do
       FactoryGirl.create(:tag, :tag_id => "event:networking-event", :tag_type => 'event', :title => "Networking Event")
-      artefact = FactoryGirl.create(:artefact, :event => ['networking-event'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:networking-event'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
@@ -155,7 +155,7 @@ class EventEditionTest < ActiveSupport::TestCase
 
     should "creates /panel-discussions/* paths for panel discussions" do
       FactoryGirl.create(:tag, :tag_id => "event:panel-discussion", :tag_type => 'event', :title => "Panel Discussion")
-      artefact = FactoryGirl.create(:artefact, :event => ['panel-discussion'])
+      artefact = FactoryGirl.create(:artefact, :event => ['event:panel-discussion'])
       n = EventEdition.create(:title         => "Event",
                               :panopticon_id => artefact.id,
                               :slug          => "testing")
