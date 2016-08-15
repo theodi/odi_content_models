@@ -34,6 +34,7 @@ class EventEdition < Edition
                            "event:workshop"                   => "workshops",
                            "event:networking-event"           => "networking-events",
                            "event:panel-discussion"           => "panel-discussions",
+                           "event:summit"                     => "summit",
                            :default => 'events'
   end
 
