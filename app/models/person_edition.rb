@@ -36,7 +36,7 @@ class PersonEdition < Edition
 
   def rendering_path
     tag_to_rendering_path "team" => "team",
-                          "summit-speaker" => "summit/speakers"
+                          "summit-speaker-2016" => "summit/2016/speakers"
   end
 
 

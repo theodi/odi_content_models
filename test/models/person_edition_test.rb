@@ -75,12 +75,12 @@ class PersonEditionTest < ActiveSupport::TestCase
     end
 
     should "create /summit/speakers for summit speakers" do
-      FactoryGirl.create(:tag, :tag_id => "summit-speaker", :tag_type => 'person', :title => "Summit speaker")
+      FactoryGirl.create(:tag, :tag_id => "summit-speaker-2016", :tag_type => 'person', :title => "Summit speaker 2016")
       artefact = FactoryGirl.create(:artefact, :person => ['summit-speaker'])
       n = PersonEdition.create(:title         => "Person",
                                :panopticon_id => artefact.id,
                                :slug          => "testing")
-      assert_equal '/summit/speakers/testing', n.rendering_path
+      assert_equal '/summit/2016/speakers/testing', n.rendering_path
     end
 
   end
