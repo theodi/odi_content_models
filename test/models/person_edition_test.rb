@@ -76,7 +76,7 @@ class PersonEditionTest < ActiveSupport::TestCase
 
     should "create /summit/speakers for summit speakers" do
       FactoryGirl.create(:tag, :tag_id => "summit-speaker-2016", :tag_type => 'person', :title => "Summit speaker 2016")
-      artefact = FactoryGirl.create(:artefact, :person => ['summit-speaker'])
+      artefact = FactoryGirl.create(:artefact, :person => ['summit-speaker-2016'])
       n = PersonEdition.create(:title         => "Person",
                                :panopticon_id => artefact.id,
                                :slug          => "testing")
