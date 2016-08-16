@@ -4,7 +4,7 @@ class PersonEditionTest < ActiveSupport::TestCase
   setup do
     @artefact = FactoryGirl.create(:artefact)
   end
-  
+
   should "have correct extra fields" do
     p = PersonEdition.create(title: "Person Edition", panopticon_id: @artefact.id)
     p.description = "Selfies direct trade fap, velit deep v street art salvia laborum banjo pour-over Godard mixtape keffiyeh literally tumblr. Next level Austin sapiente ugh, voluptate cred kogi ex fixie photo booth ullamco nostrud Odd Future."
@@ -20,12 +20,12 @@ class PersonEditionTest < ActiveSupport::TestCase
     assert_equal "email@example.com", p.email
     assert_equal "birmingham", p.node
   end
-  
+
   should "give a friendly (legacy supporting) description of its format" do
     person = PersonEdition.new
     assert_equal "Person", person.format
   end
-  
+
   context "whole_body" do
     should "contain just the description" do
       p = PersonEdition.create(:title => "Person Edition",
@@ -37,7 +37,7 @@ class PersonEditionTest < ActiveSupport::TestCase
       assert_equal expected, p.whole_body
     end
   end
-  
+
   should "clone extra fields when cloning edition" do
     person = PersonEdition.create(:title => "Person Edition",
                           :panopticon_id => @artefact.id,
@@ -53,12 +53,12 @@ class PersonEditionTest < ActiveSupport::TestCase
     assert_equal person.email, new_person.email
     assert_equal person.node, new_person.node
   end
-  
+
   context "generating paths" do
 
     should "creates /* paths for untagged people" do
       artefact = FactoryGirl.create(:artefact)
-      n = PersonEdition.create(:title         => "Person", 
+      n = PersonEdition.create(:title         => "Person",
                                :panopticon_id => artefact.id,
                                :slug          => "testing")
       assert_equal '/testing', n.rendering_path
@@ -68,10 +68,19 @@ class PersonEditionTest < ActiveSupport::TestCase
       FactoryGirl.create(:tag, :tag_id => "team", :tag_type => 'person', :title => "Team Member")
       FactoryGirl.create(:tag, :tag_id => "technical", :tag_type => 'team', :title => "Tech Team")
       artefact = FactoryGirl.create(:artefact, :person => ['team'], :team => ['technical'])
-      n = PersonEdition.create(:title         => "Person", 
+      n = PersonEdition.create(:title         => "Person",
                                :panopticon_id => artefact.id,
                                :slug          => "testing")
       assert_equal '/team/testing', n.rendering_path
+    end
+
+    should "create /summit/speakers for summit speakers" do
+      FactoryGirl.create(:tag, :tag_id => "summit-speaker", :tag_type => 'person', :title => "Summit speaker")
+      artefact = FactoryGirl.create(:artefact, :person => ['summit-speaker'])
+      n = PersonEdition.create(:title         => "Person",
+                               :panopticon_id => artefact.id,
+                               :slug          => "testing")
+      assert_equal '/summit/speakers/testing', n.rendering_path
     end
 
   end

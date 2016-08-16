@@ -18,14 +18,14 @@ class PersonEdition < Edition
   field    :linkedin,         type: String
   field    :github,           type: String
   field    :node,             type: String
-  
+
   attaches_with_metadata :image
 
   GOVSPEAK_FIELDS = Edition::GOVSPEAK_FIELDS + [:description]
 
-  clone_fields :honorific_prefix, :honorific_suffix, :affiliation, :role, :description, :url,  
+  clone_fields :honorific_prefix, :honorific_suffix, :affiliation, :role, :description, :url,
                :telephone, :email, :twitter, :linkedin, :github, :node
-  
+
   def whole_body
     description
   end
@@ -33,10 +33,11 @@ class PersonEdition < Edition
   def rendering_app
     "www"
   end
-  
+
   def rendering_path
-    tag_to_rendering_path "team" => "team"
+    tag_to_rendering_path "team" => "team",
+                          "summit-speaker" => "summit/speakers"
   end
-  
+
 
 end
