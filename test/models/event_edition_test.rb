@@ -162,6 +162,15 @@ class EventEditionTest < ActiveSupport::TestCase
       assert_equal '/panel-discussions/testing', n.rendering_path
     end
 
+    should "creates /summit/2016/sessions/* paths for summit 2016 sessions" do
+      FactoryGirl.create(:tag, :tag_id => "event:summit-session-2016", :tag_type => 'event', :title => "Summit Session 2016")
+      artefact = FactoryGirl.create(:artefact, :event => ['event:summit-session-2016'])
+      n = EventEdition.create(:title         => "Event",
+                              :panopticon_id => artefact.id,
+                              :slug          => "testing")
+      assert_equal '/summit/2016/sessions/testing', n.rendering_path
+    end
+
   end
 
 end
