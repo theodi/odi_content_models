@@ -26,16 +26,17 @@ class EventEdition < Edition
   end
 
   def rendering_path
-    tag_to_rendering_path  "event:lunchtime-lecture"          => "lunchtime-lectures",
-                           "event:meetup"                     => "meetups",
-                           "event:research-afternoon"         => "research-afternoons",
-                           "event:open-data-challenge-series" => "challenge-series",
-                           "event:roundtable"                 => "roundtables",
-                           "event:workshop"                   => "workshops",
-                           "event:networking-event"           => "networking-events",
-                           "event:panel-discussion"           => "panel-discussions",
-                           "event:summit"                     => "summit",
-                           "event:summit-session-2016"        => "summit/2016/sessions",
+    tag_to_rendering_path  "event:lunchtime-lecture"                => "lunchtime-lectures",
+                           "event:meetup"                           => "meetups",
+                           "event:research-afternoon"               => "research-afternoons",
+                           "event:open-data-challenge-series"       => "challenge-series",
+                           "event:roundtable"                       => "roundtables",
+                           "event:workshop"                         => "workshops",
+                           "event:networking-event"                 => "networking-events",
+                           "event:panel-discussion"                 => "panel-discussions",
+                           "event:summit"                           => "summit",
+                           "event:summit-session-2016"              => "summit/2016/sessions",
+                           "event:summit-training-day-session-2016" => "summit/2016/training-day/sessions",
                            :default => 'events'
   end
 
